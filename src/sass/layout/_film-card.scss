@@ -1,0 +1,90 @@
+
+// universal styles
+.film-gallery{
+   background-color: rgb(50, 78, 205);
+
+    &__item{
+        background-color: green;
+    }
+    &__img{
+        border-radius: 5px;
+    }
+    &__desc{
+        margin-top: 10px;
+    }
+    &__name{
+    color: var(--heading-color);    
+    }
+    &__genre,
+    &__year{
+        color: var(--extract-orange-color);
+    }
+    &__genre{        
+        text-transform: uppercase;
+    }
+    &__year{       
+        font-size: 12px;
+        line-height: 1.3;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .film-gallery{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &__item{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 280px;
+            margin-bottom: 20px;
+        }
+        &__genre{
+            font-size: 12px;
+            line-height: 1.17;
+        }       
+    }
+}
+
+// таблетка+ десктоп
+@media screen and (min-width: 768px){
+    .film-gallery__item{
+        margin-right: 30px;
+     }
+}
+
+@media screen and (max-width: 1024px){
+    .film-gallery{
+    
+
+        &__item{
+            width: 294px;
+            // height: 440px;
+            margin-bottom: 31px;
+        }
+        &__genre{
+            font-size: 12px;
+            line-height: 1.17;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .film-gallery{
+    
+
+        &__item{
+            width: 274px;
+            // height: 440px;
+            margin-bottom: 30px;
+        }
+        &__genre{
+            font-size: 12px;
+            line-height: 1.3;
+        }
+    }
+}
+
