@@ -1,26 +1,3 @@
-.link {
-  text-decoration: none;
-  display: block;
-}
-
-.address {
-  font-style: normal;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
 button {
   cursor: pointer;
 }
@@ -74,16 +51,19 @@ button {
   justify-content: flex-end;
   text-transform: uppercase;
 }
+
 .header__site--nav_link {
   color: #ffffff;
   padding: 3px 0px;
   position: relative;
   text-decoration: none;
-  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
+}
+.header__site--nav_link:hover {
+  color: #ff6b08;
 }
 .header__site-nav_current::after {
   content: '';
@@ -112,15 +92,14 @@ button {
   top: 46px;
 }
 .header__navigator--logo:hover {
-  fill: #ff6b08;
   color: #ff6b08;
+  &:hover .header__logo {
+    stroke: #ff6b08;
+  }
 }
 .header__logo--name {
   font-size: 30px;
   line-height: 35px;
-}
-.header__logo--name:hover {
-  color: #ff6b08;
 }
 
 @media screen and (max-width: 768px) {
@@ -130,17 +109,35 @@ button {
 }
 .header__logo {
   margin-right: 10px;
+  transition-property: stroke;
+  stroke: white;
 }
+
 //==========================================
 // =============== FORMA
+.icon__search-header {
+  stroke: white;
+}
 .header__search-form {
   text-align: center;
   margin-top: 41px;
   position: relative;
 }
-.input-header:focus {
+.header__search-form:hover,
+.header__search-form:focus {
+  .icon__search-header {
+    stroke: #ff6b08;
+  }
+}
+.input-header:hover {
   outline: none;
   border-bottom: 0.5px solid #ff6b08;
+}
+input::placeholder {
+  color: white;
+}
+.input-header:focus {
+  color: #ff6b08;
 }
 .input-header {
   background-color: initial;
@@ -173,10 +170,5 @@ button {
     right: 273px;
   }
 }
-input::placeholder {
-  color: white;
-}
-input:focus {
-  color: #ff6b08;
-}
+
 //=====================
