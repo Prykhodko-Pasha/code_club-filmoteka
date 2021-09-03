@@ -3,9 +3,6 @@
   display: block;
 }
 
-.list {
-  list-style: none;
-}
 .address {
   font-style: normal;
 }
@@ -17,11 +14,6 @@ h5,
 h6,
 p {
   margin: 0;
-}
-ul,
-li {
-  margin: 0;
-  padding: 0;
 }
 
 img {
@@ -124,9 +116,6 @@ button {
   color: #ff6b08;
 }
 .logo-name {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
   font-size: 30px;
   line-height: 35px;
 }
