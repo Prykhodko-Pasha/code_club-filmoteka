@@ -29,8 +29,11 @@ img {
   max-width: 100%;
   height: auto;
 }
+button {
+  cursor: pointer;
+}
 
-.header {
+.header-main {
   background: #000000;
 }
 
@@ -72,34 +75,6 @@ img {
   }
 }
 
-//===========================================================================
-// ============= КОНТЕЙНЕР УДАЛИТЬ
-.container {
-  width: 100%;
-  margin: 0 auto;
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    max-width: 320px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
-    padding-left: 76px;
-    padding-right: 76px;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-    padding-left: 71px;
-    padding-right: 71px;
-  }
-}
 //=========================================
 
 .site-nav {
@@ -142,8 +117,11 @@ img {
   align-items: center;
   position: absolute;
   color: #ffffff;
-  text-decoration: none;
   top: 46px;
+}
+.navigator__logo:hover {
+  fill: #ff6b08;
+  color: #ff6b08;
 }
 .logo-name {
   font-family: Roboto;
@@ -152,6 +130,10 @@ img {
   font-size: 30px;
   line-height: 35px;
 }
+.logo-name:hover {
+  color: #ff6b08;
+}
+
 @media screen and (max-width: 768px) {
   .logo-name {
     display: none;
@@ -167,12 +149,17 @@ img {
   margin-top: 41px;
   position: relative;
 }
+.input-header:focus {
+  outline: none;
+  border-bottom: 0.5px solid #ff6b08;
+}
 .input-header {
   background-color: initial;
   border: transparent;
   border-bottom: 0.5px solid #ffffff;
   width: 100%;
   height: 20px;
+  color: #ffffff;
 }
 @media screen and (min-width: 768px) {
   .input-header {
@@ -196,5 +183,11 @@ img {
   .btn-header {
     right: 273px;
   }
+}
+input::placeholder {
+  color: white;
+}
+input:focus {
+  color: #ff6b08;
 }
 //=====================
