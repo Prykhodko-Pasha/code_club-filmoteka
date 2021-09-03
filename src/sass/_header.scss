@@ -25,16 +25,16 @@ button {
   cursor: pointer;
 }
 
-.header-main {
+.header__main {
   background: #000000;
 }
 
-.site-nav {
+.header__site--nav {
   display: flex;
 }
 
 // ============= JPG картинка =============================================
-.header--container {
+.header__container {
   margin-left: auto;
   margin-right: auto;
   background-position: center;
@@ -46,21 +46,21 @@ button {
 }
 
 @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-  .header--container {
+  .header__container {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/header-main/Rectangle-mob@2x.jpg);
   }
 }
 
 @media screen and (min-width: 768px) {
-  .header--container {
+  .header__container {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/header-main/Rectangle-tabl.jpg);
     max-width: 768px;
   }
 }
 @media screen and (min-width: 1024px) {
-  .header--container {
+  .header__container {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/header-main/Rectangle.jpg);
     max-width: 1024px;
@@ -69,12 +69,12 @@ button {
 
 //=========================================
 
-.site-nav {
+.header__site--nav {
   display: flex;
   justify-content: flex-end;
   text-transform: uppercase;
 }
-.site-nav__link {
+.header__site--nav_link {
   color: #ffffff;
   padding: 3px 0px;
   position: relative;
@@ -85,7 +85,7 @@ button {
   font-size: 12px;
   line-height: 14px;
 }
-.site-nav__current::after {
+.header__site-nav_current::after {
   content: '';
   position: absolute;
   bottom: 0px;
@@ -95,45 +95,45 @@ button {
   background: #ff6b08;
 }
 
-.container-menu {
+.header-menu {
   padding-top: 58px;
 }
 
-.site-nav__item:not(:last-child) {
+.header__site--nav:not(:last-child) {
   margin-right: 39px;
 }
 
 // ====================== LOGO======================
-.navigator__logo {
+.header__navigator--logo {
   display: flex;
   align-items: center;
   position: absolute;
   color: #ffffff;
   top: 46px;
 }
-.navigator__logo:hover {
+.header__navigator--logo:hover {
   fill: #ff6b08;
   color: #ff6b08;
 }
-.logo-name {
+.header__logo--name {
   font-size: 30px;
   line-height: 35px;
 }
-.logo-name:hover {
+.header__logo--name:hover {
   color: #ff6b08;
 }
 
 @media screen and (max-width: 768px) {
-  .logo-name {
+  .header__logo--name {
     display: none;
   }
 }
-.logo__header {
+.header__logo {
   margin-right: 10px;
 }
 //==========================================
 // =============== FORMA
-.search-form {
+.header__search-form {
   text-align: center;
   margin-top: 41px;
   position: relative;
