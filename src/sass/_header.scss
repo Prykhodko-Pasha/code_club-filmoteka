@@ -1,0 +1,200 @@
+.link {
+  text-decoration: none;
+  display: block;
+}
+
+.list {
+  list-style: none;
+}
+.address {
+  font-style: normal;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.header {
+  background: #000000;
+}
+
+.site-nav {
+  display: flex;
+}
+
+// ============= JPG картинка =============================================
+.header--container {
+  margin-left: auto;
+  margin-right: auto;
+  background-position: center;
+  background-size: cover;
+  max-width: 320px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(../images/header-main/Rectangle-mob.jpg);
+  min-height: 230px;
+}
+
+@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .header--container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/header-main/Rectangle-mob@2x.jpg);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header--container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/header-main/Rectangle-tabl.jpg);
+    max-width: 768px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .header--container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/header-main/Rectangle.jpg);
+    max-width: 1024px;
+  }
+}
+
+//===========================================================================
+// ============= КОНТЕЙНЕР УДАЛИТЬ
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 320px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding-left: 76px;
+    padding-right: 76px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+    padding-left: 71px;
+    padding-right: 71px;
+  }
+}
+//=========================================
+
+.site-nav {
+  display: flex;
+  justify-content: flex-end;
+  text-transform: uppercase;
+}
+.site-nav__link {
+  color: #ffffff;
+  padding: 3px 0px;
+  position: relative;
+  text-decoration: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}
+.site-nav__current::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 100%;
+  height: 3px;
+  background: #ff6b08;
+}
+
+.container-menu {
+  padding-top: 58px;
+}
+
+.site-nav__item:not(:last-child) {
+  margin-right: 39px;
+}
+
+// ====================== LOGO======================
+.navigator__logo {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  color: #ffffff;
+  text-decoration: none;
+  top: 46px;
+}
+.logo-name {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 35px;
+}
+@media screen and (max-width: 768px) {
+  .logo-name {
+    display: none;
+  }
+}
+.logo__header {
+  margin-right: 10px;
+}
+//==========================================
+// =============== FORMA
+.search-form {
+  text-align: center;
+  margin-top: 41px;
+  position: relative;
+}
+.input-header {
+  background-color: initial;
+  border: transparent;
+  border-bottom: 0.5px solid #ffffff;
+  width: 100%;
+  height: 20px;
+}
+@media screen and (min-width: 768px) {
+  .input-header {
+    width: 336px;
+  }
+}
+.btn-header {
+  background-color: initial;
+  border: transparent;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0;
+}
+@media screen and (min-width: 768px) {
+  .btn-header {
+    right: 140px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .btn-header {
+    right: 273px;
+  }
+}
+//=====================
