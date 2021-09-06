@@ -50,7 +50,11 @@ button {
   bottom: 7px;
   position: relative;
 }
-
+@media screen and (min-width: 768px) {
+  .header__site--nav {
+    bottom: 10px;
+  }
+}
 .header__site--nav_link {
   color: #ffffff;
   padding: 3px 0px;
