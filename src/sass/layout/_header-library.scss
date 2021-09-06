@@ -5,7 +5,7 @@
   background-size: cover;
   margin: 0 auto;
   padding-top: 46px;
-  padding-bottom: 65px;
+  min-height: 230px;
 
   @media screen and (max-width: 320px) {
     background-image: url(../images/header-library/mobile/header-library-bg.jpg);
@@ -25,7 +25,6 @@
       screen and (min-resolution: 2dppx) {
       background-image: url(../images/header-library/tablet/header-library-bg@2x.jpg);
     }
-    padding-top: 41px;
   }
   @media screen and (min-width: 769px) {
     background-image: url(../images/header-library/desktop/header-library-bg.jpg);
@@ -35,13 +34,14 @@
       screen and (min-resolution: 2dppx) {
       background-image: url(../images/header-library/desktop/header-library-bg@2x.jpg);
     }
+    padding-top: 41px;
   }
 }
 
 .header-library-navigation {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .header-library-logo {
@@ -51,6 +51,7 @@
   font-size: 30px;
   line-height: 1.17;
   color: #ffffff;
+  align-items: center;
 }
 
 .header-library-logo__text {
