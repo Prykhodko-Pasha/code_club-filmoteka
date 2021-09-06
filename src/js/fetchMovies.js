@@ -2,7 +2,7 @@ import filmCard from '../templates/film-card.hbs';
 import getGenres from './movies-genres.json';
 
 const refs ={
-    filmGallery: document.querySelector('.film-gallery'),
+    filmGallery: document.querySelector('.film-gallery')
 }
        
 

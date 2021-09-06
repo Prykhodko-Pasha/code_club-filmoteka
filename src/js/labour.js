@@ -1,12 +1,7 @@
 
 import fetchApi from './fetchMovies';
 
-fetchApi()
+fetchApi();
 
 
-                 
-    
-
-            
-  
 
