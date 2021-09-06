@@ -6,10 +6,6 @@ button {
   background: #000000;
 }
 
-.header__site--nav {
-  display: flex;
-}
-
 // ============= JPG картинка =============================================
 .header__container {
   margin-left: auto;
@@ -45,22 +41,22 @@ button {
 }
 
 //=========================================
-
-.header__site--nav {
+.header__navigator {
   display: flex;
-  justify-content: flex-end;
-  text-transform: uppercase;
+  justify-content: space-between;
+  align-items: flex-end;
 }
-
+.header__site--box {
+  display: flex;
+}
 .header__site--nav_link {
   color: #ffffff;
-  padding: 3px 0px;
   position: relative;
   text-decoration: none;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.17;
 }
 .header__site--nav_link:hover {
   color: #ff6b08;
@@ -68,15 +64,22 @@ button {
 .header__site-nav_current::after {
   content: '';
   position: absolute;
-  bottom: 0px;
-  right: 0px;
+  display: block;
   width: 100%;
   height: 3px;
-  background: #ff6b08;
+  background-color: var(--extract-orange-color);
+  border-radius: 2px;
+  bottom: -2px;
+  left: 0;
 }
 
 .header-menu {
-  padding-top: 58px;
+  padding-top: 46px;
+}
+@media screen and (min-width: 768px) {
+  .header-menu {
+    padding-top: 41px;
+  }
 }
 
 .header__site--nav:not(:last-child) {
@@ -87,9 +90,7 @@ button {
 .header__navigator--logo {
   display: flex;
   align-items: center;
-  position: absolute;
   color: #ffffff;
-  top: 46px;
 }
 .header__navigator--logo:hover {
   color: #ff6b08;
