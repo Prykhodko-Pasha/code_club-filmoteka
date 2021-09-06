@@ -1,8 +1,11 @@
 import filmCard from '../templates/film-card.hbs';
 import getGenres from './movies-genres.json';
-import getRefs from './getRefs';
 
-const refs = getRefs();
+const refs ={
+    filmGallery: document.querySelector('.film-gallery'),
+}
+       
+
 
 // inner genres obj 
 const genres = JSON.stringify(getGenres)
@@ -28,7 +31,7 @@ const url = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`
                     if(el.id == id){
                         // console.log(id)
                         id = el.name
-                        // console.log(id)                           
+                        console.log(id)                           
                         return id
                     }
                 })
