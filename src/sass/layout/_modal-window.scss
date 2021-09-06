@@ -1,0 +1,67 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.25);
+  opacity: 0;
+  visibility: hidden;
+};
+
+.modal__body {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  width: 80%;
+};
+
+.modal__close {
+  float: right;
+};
+
+.modal__header {
+  color: #000000;
+  font-size: 30px;
+  font-weight: 500;
+  text-transform: uppercase;
+};
+
+.modal-list__stat {
+font-weight: 500;
+font-size: 12px;
+line-height: 1.33;
+color: #8C8C8C;
+};
+
+.modal-list__value {
+  font-weight: 500;
+font-size: 12px;
+line-height: 14px;
+  color: #000000;
+};
+
+.rating {
+color: white;
+background: #FF6B01;
+border-radius: 5px;
+};
+
+.film-title {
+  text-transform: uppercase;
+};
+
+.description {
+font-weight: 500;
+font-size: 12px;
+line-height: 1.67;
+color: #000000;
+};
+
+.modal__content {
+  padding-left: 20px;
+}

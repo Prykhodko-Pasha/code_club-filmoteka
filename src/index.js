@@ -1,3 +1,4 @@
 import './sass/main.scss';
 
-import '../src/js/labour';
+import './js/homeHeader';
+import './js/labour';
