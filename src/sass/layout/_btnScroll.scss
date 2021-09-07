@@ -1,6 +1,6 @@
-.flowing-scroll {
+.flowing__scroll-up {
    position: fixed;
-   bottom: 39px;
+   bottom:  100px;
    right: 360px;
    z-index: 10;
    cursor: pointer;
@@ -10,7 +10,21 @@
 opacity: 0;
 visibility: hidden;
 }
-.up-btn__icon {
-   width: 100px;
-   height: 100px;
+.icon__arrow-up {
+   width: 70px;
+   height: 70px;
+}
+
+
+.flowing__scroll-down {
+   position: fixed;
+   bottom:  50px;
+   right: 360px;
+   z-index: 10;
+   cursor: pointer;
+   stroke: #818181;
+}
+.icon__arrow-down {
+      width: 70px;
+   height: 70px;
 }
