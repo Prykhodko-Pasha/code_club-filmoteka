@@ -1,0 +1,16 @@
+.flowing-scroll {
+   position: fixed;
+   bottom: 39px;
+   right: 360px;
+   z-index: 10;
+   cursor: pointer;
+   stroke: #818181;
+}
+.hidden__scroll {
+opacity: 0;
+visibility: hidden;
+}
+.up-btn__icon {
+   width: 100px;
+   height: 100px;
+}

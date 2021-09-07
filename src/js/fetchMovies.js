@@ -31,7 +31,7 @@ const url = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`
                     if(el.id == id){
                         // console.log(id)
                         id = el.name
-                        console.log(id)                           
+                        // console.log(id)                           
                         return id
                     }
                 })
@@ -45,7 +45,7 @@ const url = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`
                 if(el.release_date){
                 const date = Number(el.release_date.slice(0, 4));
                 // Number(el.release_date.slice(0, 4))
-                console.log(date)
+                // console.log(date)
             }
             })    
       
