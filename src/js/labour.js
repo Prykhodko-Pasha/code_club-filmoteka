@@ -1,4 +1,3 @@
-
 import fetchMoviesCards from './fetchMovies';
 import filmCard from '../templates/film-card.hbs';
 
