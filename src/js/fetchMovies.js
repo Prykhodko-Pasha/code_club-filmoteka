@@ -1,11 +1,4 @@
 
-// import getGenres from './movies-genres.json';
-    
-
-
-// // inner genres obj 
-// const genres = JSON.stringify(getGenres)
-// const getObj = JSON.parse(genres)
 
 
 const API_KEY = '23824187957955af0aa1cb82b26c80b5';
