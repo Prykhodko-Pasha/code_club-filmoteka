@@ -1,30 +1,65 @@
 .flowing__scroll-up {
-   position: fixed;
-   bottom:  100px;
-   right: 360px;
-   z-index: 10;
-   cursor: pointer;
-   stroke: #818181;
+  position: fixed;
+  bottom: 200px;
+  cursor: pointer;
+  fill: var(--secondary-text-color);
+}
+//=======================================
+.flowing__scroll-down {
+  position: fixed;
+  bottom: 165px;
+  cursor: pointer;
+  fill: var(--secondary-text-color);
 }
 .hidden__scroll {
-opacity: 0;
-visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
 }
-.icon__arrow-up {
-   width: 70px;
-   height: 70px;
+.icon__arrow-up:hover,
+.icon__arrow-up:focus,
+.icon__arrow-down:hover,
+.icon__arrow-down:focus {
+  fill: var(--buttons-color);
 }
+@media screen and (max-width: 768px) {
+  .flowing__scroll-up,
+  .flowing__scroll-down {
+    right: calc((100vw - 380px) / 2);
+  }
+  .icon__arrow-up,
+  .icon__arrow-down {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .flowing__scroll-up,
+  .flowing__scroll-down {
+    right: calc((100vw - 750px) / 2);
+    &.flowing__scroll-down {
+      bottom: 155px;
+    }
+  }
 
+  .icon__arrow-up,
+  .icon__arrow-down {
+    width: 40px;
+    height: 40px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .flowing__scroll-up,
+  .flowing__scroll-down {
+    right: calc((100vw - 1040px) / 2);
+    &.flowing__scroll-down {
+      bottom: 140px;
+    }
+  }
 
-.flowing__scroll-down {
-   position: fixed;
-   bottom:  50px;
-   right: 360px;
-   z-index: 10;
-   cursor: pointer;
-   stroke: #818181;
+  .icon__arrow-up,
+  .icon__arrow-down {
+    width: 50px;
+    height: 50px;
+  }
 }
-.icon__arrow-down {
-      width: 70px;
-   height: 70px;
-}
+//========================

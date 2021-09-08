@@ -1,43 +1,33 @@
-import debounce from 'lodash.debounce';
-
 const btnUp = document.querySelector('.flowing__scroll-up');
+const btnDown = document.querySelector('.flowing__scroll-down')
+const vwBody = document.querySelector('body')
 
-window.addEventListener('scroll', debounce(hiddenScroll(btnUp)));
+window.addEventListener('scroll', hiddenScroll(btnUp));
 btnUp.addEventListener('click', scrollUp);
+btnDown.addEventListener('click', scrollDown)
 
 
-function hiddenScroll(e) {
-  return function hideOnScroll() {
-    if (scrollY < document.documentElement.clientHeight) {
-      e.classList.add('hidden__scroll');
+function hiddenScroll() {
+  const heightScroll = document.documentElement.clientHeight;
+  return function onbtnUp() {
+    if (scrollY < heightScroll) {
+      btnUp.classList.add('hidden__scroll');
     } else {
-     e.classList.remove('hidden__scroll');
+      btnUp.classList.remove('hidden__scroll');
     }
   };
 }
 
 function scrollUp() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  vwBody.scrollIntoView({
+    block: 'start',
+    behavior: 'smooth',
+  });
 }
-
-// ============================================================
-
-// const btnDown = document.querySelector('.flowing__scroll-down');
-
-// window.addEventListener('scroll', debounce(hiddenScroll(btnDown)));
-// btnDown.addEventListener('click', scrollUp);
-
-
-// function hiddenScroll(e) {
-//   return function hideOnScroll() {
-//     if (scrollY < document.documentElement.clientHeight) {
-//       e.classList.remove('hidden__scroll');
-//       e.classList.add('hidden__scroll');
-//     } else {
-//     }
-//   };
-// }
-
-// function scrollUp() {
-//   window.scrollTo({ top: 0, behavior: 'smooth' });
-// }
+//=============================
+function scrollDown() {
+   vwBody.scrollIntoView({
+     block: 'end',
+     behavior: 'smooth',
+   });
+}
