@@ -1,7 +1,3 @@
-
-import fetchApi from './fetchMovies';
+import { fetchApi } from './fetchMovies';
 
 fetchApi();
-
-
-
