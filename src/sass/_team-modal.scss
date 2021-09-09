@@ -26,7 +26,7 @@ body.show-modal .footer-modal {
   transition: opacity 200ms ease-in-out, visibility 200 ms ease-in-out;
 
   @media (min-width: 768px) {
-    padding-top: 208px;
+    padding-top: 2px;
   }
 }
 
@@ -34,6 +34,8 @@ body.show-modal .footer-modal {
   padding: 24px;
   border-radius: 4px;
   max-width: 640px;
+  max-height: 100%;
+  overflow: scroll;
   width: 100%;
   min-height: 320px;
   background-color: var(--main-color-bg);
@@ -71,11 +73,11 @@ body.show-modal .footer-modal {
   }
 }
 
-.team__container {
-  margin-bottom: 20 px;
-  padding-top: 47px;
-  padding-bottom: 84px;
-}
+// .team__container {
+//   margin-bottom: 20 px;
+//   padding-top: 47px;
+//   padding-bottom: 84px;
+// }
 
 .container__title {
   font-size: 28px;
@@ -143,7 +145,20 @@ body.show-modal .footer-modal {
 
   &:hover,
   &:focus {
-    background-color: var(--buttons-color);
+    background-color: var(--main-color-bg);
     fill: var(--extract-orange-color);
   }
+}
+// Слайдер
+.slider {
+  position: relative;
+  padding: 0px 50px;
+}
+// Ограничивающая оболочка
+.slick-list {
+  overflow: hidden;
+}
+// Лента слайдов
+.slick-track {
+  display: flex;
 }

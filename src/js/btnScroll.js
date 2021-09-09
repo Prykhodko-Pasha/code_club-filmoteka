@@ -1,11 +1,10 @@
 const btnUp = document.querySelector('.flowing__scroll-up');
-const btnDown = document.querySelector('.flowing__scroll-down')
-const vwBody = document.querySelector('body')
+const btnDown = document.querySelector('.flowing__scroll-down');
+const vwBody = document.querySelector('body');
 
 window.addEventListener('scroll', hiddenScroll(btnUp));
 btnUp.addEventListener('click', scrollUp);
-btnDown.addEventListener('click', scrollDown)
-
+btnDown.addEventListener('click', scrollDown);
 
 function hiddenScroll() {
   const heightScroll = document.documentElement.clientHeight;
@@ -26,8 +25,8 @@ function scrollUp() {
 }
 //=============================
 function scrollDown() {
-   vwBody.scrollIntoView({
-     block: 'end',
-     behavior: 'smooth',
-   });
+  vwBody.scrollIntoView({
+    block: 'end',
+    behavior: 'smooth',
+  });
 }
