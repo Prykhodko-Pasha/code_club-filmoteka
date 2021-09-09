@@ -7,7 +7,7 @@
 //=======================================
 .flowing__scroll-down {
   position: fixed;
-  bottom: 165px;
+  bottom: 150px;
   cursor: pointer;
   fill: var(--secondary-text-color);
 }
@@ -24,12 +24,12 @@
 @media screen and (max-width: 768px) {
   .flowing__scroll-up,
   .flowing__scroll-down {
-    right: calc((100vw - 380px) / 2);
+    right: calc((100vw - 400px) / 2);
   }
   .icon__arrow-up,
   .icon__arrow-down {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 }
 @media screen and (min-width: 768px) {
