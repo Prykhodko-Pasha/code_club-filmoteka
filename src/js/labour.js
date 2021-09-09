@@ -1,3 +1,9 @@
+
+import { fetchApi } from './fetchMovies';
+
+fetchApi();
+
+
 import fetchMoviesCards from './fetchMovies';
 import filmCard from '../templates/film-card.hbs';
 
@@ -52,3 +58,4 @@ function generateData(movie) {
     return release_date;
   }
 }
+
