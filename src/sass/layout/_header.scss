@@ -3,7 +3,7 @@ button {
 }
 
 .header__main {
-  background: #000000;
+  background: var(--heading-color);
 }
 
 // ============= JPG картинка =============================================
@@ -59,7 +59,7 @@ button {
   line-height: 1.17;
 }
 .header__site--nav_link:hover {
-  color: #ff6b08;
+  color: var(--extract-orange-color);
 }
 .header__site-nav_current::after {
   content: '';
@@ -93,9 +93,9 @@ button {
   color: #ffffff;
 }
 .header__navigator--logo:hover {
-  color: #ff6b08;
+  color: var(--extract-orange-color);
   &:hover .header__logo {
-    stroke: #ff6b08;
+    stroke: var(--extract-orange-color);
   }
 }
 .header__logo--name {
@@ -111,7 +111,7 @@ button {
 .header__logo {
   margin-right: 10px;
   transition-property: stroke;
-  stroke: #818181;
+  stroke: var(--secondary-text-color);
 }
 
 //==========================================
@@ -130,7 +130,7 @@ button {
 }
 
 input:hover {
-  border-color: #ff6b08;
+  border-color: var(--extract-orange-color);
 }
 
 .input-header {
