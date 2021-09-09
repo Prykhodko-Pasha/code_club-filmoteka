@@ -39,10 +39,7 @@ function getMoviesDataById(movie_ids) {
 }
 
 export { fetchApi, getMoviesDataById };
-
-
-const API_KEY = '23824187957955af0aa1cb82b26c80b5';
-// const BASE_URL ='https://api.themoviedb.org/3/trending/movie/day';    
+    
 
 const url = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`
      
