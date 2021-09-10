@@ -12,8 +12,8 @@ btnHome.addEventListener('click', renderHomePage);
 
 async function renderLibraryPage(moviesWatched, moviesQueue) {
   renderLibrary.insertAdjacentHTML('beforeend', Library());
-  const markupWatched = await getMoviesDataById(moviesWatched);
-  const markupQueue = await getMoviesDataById(moviesQueue);
+  // const markupWatched = await getMoviesDataById(moviesWatched);
+  // const markupQueue = await getMoviesDataById(moviesQueue);
 
   libraryList.insertAdjacentHTML('beforeend', markupWatched);
   includeHeader.style.cssText = `display: none`;
