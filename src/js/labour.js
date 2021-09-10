@@ -58,10 +58,10 @@ function generateGenres(movie) {
 
 // год
 function generateData(movie) {
-  // if(String(movie.release_date).length < 4){    
-  //   return movie.release_date = "unknown";
-  //   // console.log(String(movie.release_date).length);
-  // }  else
+  if(movie.release_date == undefined || null){   
+    // console.log("unknown") 
+    return movie.release_date = "unknown";    
+  }  else
    if(movie.release_date) { 
     const release_date = Number(movie.release_date.slice(0, 4));
     return release_date;
