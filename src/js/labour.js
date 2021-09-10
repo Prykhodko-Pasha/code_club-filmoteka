@@ -1,37 +1,43 @@
-
-import fetchMoviesCards from './fetchMovies';
 import filmCard from '../templates/film-card.hbs';
-
 import getGenres from './movies-genres.json';
-    
-// inner genres obj 
+import CardsApiService from './apiService'
+
+// inner genres obj
 const genres = JSON.stringify(getGenres);
 const getObj = JSON.parse(genres);
 
-const refs ={
-    filmGallery: document.querySelector('.film-gallery'),   
-    genresMarkup: document.querySelector('.film-gallery__genre'),
-    dataMarkup: document.querySelector('.film-gallery__year'),
-}
+const refs = {
+  filmGallery: document.querySelector('.film-gallery'),
+};
 
-fetchMoviesCards()
-  .then(movies => {
-    const change = movies.results.map(movie => {
-      return {
-        ...movie,
-        genre_ids: generateGenres(movie),
-        release_date: generateData(movie),
-      };
-    });
-    console.log(change);
-    return change;
-  })
-  .then(renderMoviesCard)
-  .catch(error => console.log(error));
+const API_KEY = '23824187957955af0aa1cb82b26c80b5';
+const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week'; 
+const urlForTrend = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`;
+
+
+const fetchApi = new CardsApiService();
+  
+fetchApi.fetchCards(urlForTrend)
+  .then(results => {   
+      const change = results.map(movie => {
+        // console.log(movie)
+        return {
+          ...movie,
+          genre_ids: generateGenres(movie),
+          release_date: generateData(movie),
+        };
+      });
+      // console.log(change)
+      return change;
+    })
+    .then(renderMoviesCard)
+    .catch(error => console.log(error));
+
 
 
 // разметка
 function renderMoviesCard(movie) {
+  // console.log(movie,'this is from render')
   const markup = filmCard(movie);
   refs.filmGallery.innerHTML = markup;
 }
@@ -49,7 +55,11 @@ function generateGenres(movie) {
 
 // год
 function generateData(movie) {
-  if (movie.release_date) {
+  // if(String(movie.release_date).length < 4){    
+  //   return movie.release_date = "unknown";
+  //   // console.log(String(movie.release_date).length);
+  // }  else
+   if(movie.release_date) { 
     const release_date = Number(movie.release_date.slice(0, 4));
     return release_date;
   }
