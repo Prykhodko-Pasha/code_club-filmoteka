@@ -1,11 +1,9 @@
-
 import filmCard from '../templates/film-card.hbs';
 import getGenres from './movies-genres.json';
 
 const refs = {
   filmGallery: document.querySelector('.film-gallery'),
 };
-
 
 // inner genres obj
 const genres = JSON.stringify(getGenres);
@@ -17,7 +15,6 @@ const BASE_MOVIE_URL = 'https://api.themoviedb.org/3/movie';
 
 const url = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`;
 const url_movie = `${BASE_MOVIE_URL}/{movie_id}?api_key=${API_KEY}&language=en-US&page=1`;
-
 
 function getMoviesDataById(movie_ids) {
   const movies = { results: [] };
@@ -40,21 +37,17 @@ function getMoviesDataById(movie_ids) {
 
 export { fetchApi, getMoviesDataById };
 
-
 const API_KEY = '23824187957955af0aa1cb82b26c80b5';
-// const BASE_URL ='https://api.themoviedb.org/3/trending/movie/day';    
+// const BASE_URL ='https://api.themoviedb.org/3/trending/movie/day';
 
-const url = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`
-     
-  
-export default function fetchMoviesCards(){
-    return fetch(url)
-    .then( response =>  response.json())   
+const url = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`;
+
+export default function fetchMoviesCards() {
+  return fetch(url).then(response => response.json());
 }
-  
 
-// ==== 
- // function fetchApi() {
+// ====
+// function fetchApi() {
 //   fetch(url)
 //     .then(response => response.json())
 //     .then(movie => {
@@ -92,5 +85,3 @@ export default function fetchMoviesCards(){
 //     })
 //     .catch(error => console.log(error));
 // }
-
-
