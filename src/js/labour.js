@@ -1,17 +1,18 @@
+
 import fetchMoviesCards from './fetchMovies';
 import filmCard from '../templates/film-card.hbs';
 
 import getGenres from './movies-genres.json';
-
-// inner genres obj
+    
+// inner genres obj 
 const genres = JSON.stringify(getGenres);
 const getObj = JSON.parse(genres);
 
-const refs = {
-  filmGallery: document.querySelector('.film-gallery'),
-  genresMarkup: document.querySelector('.film-gallery__genre'),
-  dataMarkup: document.querySelector('.film-gallery__year'),
-};
+const refs ={
+    filmGallery: document.querySelector('.film-gallery'),   
+    genresMarkup: document.querySelector('.film-gallery__genre'),
+    dataMarkup: document.querySelector('.film-gallery__year'),
+}
 
 fetchMoviesCards()
   .then(movies => {
@@ -27,6 +28,7 @@ fetchMoviesCards()
   })
   .then(renderMoviesCard)
   .catch(error => console.log(error));
+
 
 // разметка
 function renderMoviesCard(movie) {
