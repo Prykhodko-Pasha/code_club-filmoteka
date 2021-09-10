@@ -23,9 +23,11 @@ function clearCardsContainer() {
 }
 const cardsApiService = new CardsApiService();
 function onSearch() {
-  
+  cardsApiService.page = 1;
        cardsApiService.fetchCardsonSearch() 
-         .then(filmcards => { $(domContainer).pagination($.extend({}, { items: cardsApiService.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
+         .then(filmcards => {
+          
+            $(domContainer).pagination($.extend({}, { items: cardsApiService.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
         cardsApiService.page = pageNumber;
         cardsApiService.fetchCardsonSearch() 
           .then(filmcards => { appendCardsMarkup(filmcards)  })
@@ -47,7 +49,13 @@ $(function () {
          
     onInit: function () {
       cardsApiService.fetchCards()   
-          .then(filmcards => {$(domContainer).pagination(`destroy`); appendCardsMarkup(filmcards)  })	
+          .then(filmcards => { $(domContainer).pagination($.extend({}, { items: cardsApiService.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
+            cardsApiService.page = pageNumber;
+           console.log(cardsApiService.totalResults)
+        cardsApiService.fetchCards() 
+          .then(filmcards => { appendCardsMarkup(filmcards)  })
+				
+				} })); appendCardsMarkup(filmcards) })	
     },		
     });
 });
