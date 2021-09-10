@@ -33,6 +33,7 @@ function fetchApi() {
               return id;
             }
           });
+          
         });
       });
       // if(idsGenre.length > 1){
