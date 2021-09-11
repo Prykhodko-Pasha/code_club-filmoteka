@@ -1,10 +1,14 @@
 {{#each this}}
   <li class='film-gallery__item'>
-    <img
-      class='film-gallery__img'
-      src='https://image.tmdb.org/t/p/w500{{poster_path}}'
-      alt={{title}}
-    />
+
+{{#if poster_path}}
+  <img class='film-gallery__img' src='https://image.tmdb.org/t/p/w500{{poster_path}}' alt={{title}} />
+  {{else}}
+  <img class='film-gallery__img' src='https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg'
+    alt={{title}} />
+  {{/if}}
+ 
+
     <div class='film-gallery__desc'>
       <p class='film-gallery__name'>
         {{original_title}}

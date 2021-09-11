@@ -12,7 +12,7 @@ const refs = {
 // const getObj = JSON.parse(genres);
 
 const API_KEY = '23824187957955af0aa1cb82b26c80b5';
-// const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week'; 
+const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week';
 const BASE_MOVIE_URL = 'https://api.themoviedb.org/3/movie';
 
 // const url = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`;
@@ -27,6 +27,8 @@ function getMoviesDataById(movie_ids) {
       fetch(url_movie.replace('{movie_id}', movie_id))
         .then(response => response.json())
         .then(movie => {
+
+          // ===
           movie.genre_ids = movie.genres.map(genre => genre.id);
           movies.results.push(movie);
         })
@@ -38,7 +40,9 @@ function getMoviesDataById(movie_ids) {
   });
 }
 
-export { getMoviesDataById };
+
+export { getMoviesDataById};
+
 
 
 
@@ -101,4 +105,5 @@ export { getMoviesDataById };
 //         })
 //     .catch(error => console.log(error))    
 //     }
+
 

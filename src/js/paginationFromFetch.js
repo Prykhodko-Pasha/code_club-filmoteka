@@ -115,7 +115,6 @@ function generateGenres(movie) {
 
 // год
 function generateData(movie) {
-  console.log(movie, 'here')
   if(movie.release_date == undefined){
     return movie.release_date = 'Soon'
   }else if(movie.release_date) { 
