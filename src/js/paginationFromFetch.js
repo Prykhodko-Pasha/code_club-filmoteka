@@ -37,29 +37,24 @@ function onSearch() {
 }
 
 function appendCardsMarkup(filmcards) {
+//   console.log(filmcards);
   clearCardsContainer();
   refs.cardsContainer.insertAdjacentHTML('beforeend', allcardsTpl(filmcards)); 
 }
 
 $(function () {
-  
   $(domContainer).pagination({
-           
       cssStyle: 'dark-theme',
-         
-    onInit: function () {
-      
-      
-      
-      trendFetch()   
-          .then(filmcards => { $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
-            fetchApi.page = pageNumber;
-            
-            console.log(fetchApi.page);
-        trendFetch().then(filmcards => {console.log(filmcards); appendCardsMarkup(filmcards)  })
-				
-				} })); appendCardsMarkup(filmcards) })	
-    },		
+      onInit: function () {
+        trendFetch()
+          .then(filmcards => {
+              $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
+                fetchApi.page = pageNumber;
+                console.log(fetchApi.page);
+                trendFetch().then(filmcards => {console.log(filmcards); appendCardsMarkup(filmcards)  })
+                } })); appendCardsMarkup(filmcards)
+          })
+      },
     });
 });
 
@@ -78,7 +73,7 @@ function trendFetch() {
         release_date: generateData(movie),
       };
     });
-    console.log(change)
+//     console.log(change)
     return change;
   })
   .catch(error => console.log(error));
@@ -95,7 +90,7 @@ function searchFetch() {
         release_date: generateData(movie),
       };
     });
-    console.log(change)
+//     console.log(change)
     return change;
   })
   .catch(error => console.log(error));
@@ -122,3 +117,5 @@ function generateData(movie) {
     return release_date;
   }
 }
+
+export { onSearch };

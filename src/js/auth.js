@@ -147,8 +147,8 @@ class FirebaseWork {
         userDataTemplate.forEach(item => {
           userData[item] = prompt('Input your ' + item);
         });
-        fw.signUp(userData).then(userData => {
-          renderLibraryPage();
+        fw.signUp(userData).then(async userData => {
+          renderLibraryPage(await fw.getWatchedList(), await fw.getQueueList());
         });
       });
   });
