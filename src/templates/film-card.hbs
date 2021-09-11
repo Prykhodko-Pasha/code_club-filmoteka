@@ -1,29 +1,43 @@
 {{#each this}}
-
   <li class='film-gallery__item'>
 
-  {{#if poster_path}}
+{{#if poster_path}}
   <img class='film-gallery__img' src='https://image.tmdb.org/t/p/w500{{poster_path}}' alt={{title}} />
   {{else}}
   <img class='film-gallery__img' src='https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg'
     alt={{title}} />
   {{/if}}
+ 
 
     <div class='film-gallery__desc'>
       <p class='film-gallery__name'>
         {{original_title}}
       </p>
-      <p>
-        {{!-- <ul class='film-gallery__genre'>  --}}
+      <p>        
           {{#each genre_ids}}
-          <span class='film-gallery__genre'>{{this}}</span>
-            {{!-- <li> {{this}}</li> --}}
+            <span class='film-gallery__genre'> {{this}}</span>
           {{/each}}
-        {{!-- </ul> --}}
         <span class='film-gallery__year'>
           &#124; {{release_date}}
         </span>
       </p>
     </div>
+
+    <div class='film-gallery__buttons'>
+      <button class='film-gallery__button js-addToWatched' data-id='{{id}}'>Add to Watched</button>
+      <button class='film-gallery__button js-addToQueue' data-id='{{id}}'>Add to Queue</button>
+    </div>
+    </div>
   </li>
-{{/each}}
+{{/each}} 
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,3 @@
-// import './sass/main.scss';
 import CardsApiService from '../js/apiService';
 import allcardsTpl from '../templates/film-card';
 import getGenres from './movies-genres.json';
@@ -116,8 +115,9 @@ function generateGenres(movie) {
 
 // год
 function generateData(movie) {
-
-   if(movie.release_date) { 
+  if(movie.release_date == undefined){
+    return movie.release_date = 'Soon'
+  }else if(movie.release_date) { 
     const release_date = Number(movie.release_date.slice(0, 4));
     return release_date;
   }
