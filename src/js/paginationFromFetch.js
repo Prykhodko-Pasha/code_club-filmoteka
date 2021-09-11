@@ -23,7 +23,7 @@ function clearCardsContainer() {
 }
 
 function onSearch() {
-  fetchApi.page = 1;
+  fetchApi.resetPage();
        searchFetch() 
          .then(filmcards => {
           
@@ -42,11 +42,9 @@ function appendCardsMarkup(filmcards) {
   refs.cardsContainer.insertAdjacentHTML('beforeend', allcardsTpl(filmcards)); 
 }
 
-$(function () {
-  $(domContainer).pagination({
-      cssStyle: 'dark-theme',
-      onInit: function () {
-        trendFetch()
+export default function homePage() {
+  fetchApi.resetPage();
+  trendFetch()
           .then(filmcards => {
               $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
                 fetchApi.page = pageNumber;
@@ -54,6 +52,13 @@ $(function () {
                 trendFetch().then(filmcards => {console.log(filmcards); appendCardsMarkup(filmcards)  })
                 } })); appendCardsMarkup(filmcards)
           })
+}
+
+$(function () {
+  $(domContainer).pagination({
+      cssStyle: 'dark-theme',
+      onInit: function () {
+        homePage()
       },
     });
 });
