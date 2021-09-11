@@ -1,0 +1,125 @@
+
+// universal styles
+.film-gallery{
+    display: flex;
+
+    &__item{
+        width: 100%;
+        border-radius: 5px;
+    }
+    &__tech{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__img{
+        border-radius: 5px;
+    }
+    &__desc{
+        margin-top: 10px;
+    }
+    &__name{
+        color: var(--heading-color);
+        text-transform: uppercase;   
+        font-weight: var(--prevailing-weight-font);            
+    }
+    
+    &__genre,
+    &__year{
+        color: var(--extract-orange-color);
+    }
+    // &__genre::after{
+    //     content: ',';
+    // }
+    // &__genre:last-child{
+    //     content: '';
+    // }
+    &__genre +&__genre::before {
+        content:', ';
+        margin-left: -0.3em;
+    }        
+   
+    &__year{       
+        font-size: 12px;
+        line-height: 1.3;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .film-gallery{
+        flex-direction: column;
+        padding-top: 20px;
+        padding-top: 20px;
+        padding-bottom: 40px;
+        
+        &__item:not(:last-child){
+                margin-bottom: 20px;
+        }        
+        &__img{
+            width: 280px;
+        }
+        &__genre{
+            font-size: 12px;
+            line-height: 1.17;
+        }           
+        &__name{
+            font-size: 12px;
+            line-height: 1.17; //14px; 
+        }
+    }
+}
+
+// таблетка+ десктоп
+@media screen and (min-width: 768px){
+    .film-gallery{        
+        flex-wrap: wrap;
+        padding-top: 60px;
+        padding-bottom: 50px;
+
+        margin-top: -30px;
+        margin-left: -30px;  
+    
+        &__item{
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+        &__name{
+            font-size: 12px;
+            line-height: 1.3;//16px; 
+        }
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    .film-gallery{    
+        padding-top: 60px;       
+
+        &__item{
+            flex-basis: calc(100% / 2 - 30px);
+        }
+        &__genre{
+            font-size: 12px;
+            line-height: 1.17;
+        }
+        &__img{
+            width: 293px;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .film-gallery{
+    
+        &__item{
+            flex-basis: calc(100% / 3 - 30px)
+        }
+        &__genre{
+            font-size: 12px;
+            line-height: 1.3;
+        }
+        &__img{
+            width: 274px;
+        }
+    }
+}
+

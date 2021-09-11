@@ -1,0 +1,171 @@
+button {
+  cursor: pointer;
+}
+
+.header__main {
+  background: var(--heading-color);
+}
+
+// ============= JPG картинка =============================================
+.header__container {
+  margin-left: auto;
+  margin-right: auto;
+  background-position: center;
+  background-size: cover;
+  max-width: 320px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(../images/header-main/Rectangle-mob.jpg);
+  min-height: 230px;
+}
+
+@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .header__container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/header-main/Rectangle-mob@2x.jpg);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header__container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/header-main/Rectangle-tabl.jpg);
+    max-width: 768px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .header__container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/header-main/Rectangle.jpg);
+    max-width: 1024px;
+  }
+}
+
+//=========================================
+.header__navigator {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.header__site--box {
+  display: flex;
+}
+.header__site--nav_link {
+  color: #ffffff;
+  position: relative;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+}
+.header__site--nav_link:hover {
+  color: var(--extract-orange-color);
+}
+.header__site-nav_current::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--extract-orange-color);
+  border-radius: 2px;
+  bottom: -2px;
+  left: 0;
+}
+
+.header-menu {
+  padding-top: 46px;
+}
+@media screen and (min-width: 768px) {
+  .header-menu {
+    padding-top: 41px;
+  }
+}
+
+.header__site--nav:not(:last-child) {
+  margin-right: 39px;
+}
+
+// ====================== LOGO======================
+.header__navigator--logo {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+}
+.header__navigator--logo:hover {
+  color: var(--extract-orange-color);
+  &:hover .header__logo {
+    stroke: var(--extract-orange-color);
+  }
+}
+.header__logo--name {
+  font-size: 30px;
+  line-height: 35px;
+}
+
+@media screen and (max-width: 768px) {
+  .header__logo--name {
+    display: none;
+  }
+}
+.header__logo {
+  margin-right: 10px;
+  transition-property: stroke;
+  stroke: var(--secondary-text-color);
+}
+
+//==========================================
+// =============== FORMA
+.icon__search-header {
+  stroke: white;
+}
+.header__search-form {
+  text-align: center;
+  margin-top: 41px;
+  position: relative;
+}
+
+::placeholder {
+  color: white;
+}
+
+input:hover {
+  border-color: var(--extract-orange-color);
+}
+
+.input-header {
+  outline: none;
+  background-color: initial;
+  border: transparent;
+  border-bottom: 0.5px solid #ffffff;
+  width: 100%;
+  height: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .input-header {
+    width: 336px;
+  }
+}
+.header__btn {
+  background-color: initial;
+  border: transparent;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0;
+}
+@media screen and (min-width: 768px) {
+  .header__btn {
+    right: 140px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .header__btn {
+    right: 273px;
+  }
+}
+
+//=====================
