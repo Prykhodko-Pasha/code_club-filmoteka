@@ -37,29 +37,24 @@ function onSearch() {
 }
 
 function appendCardsMarkup(filmcards) {
+  console.log(filmcards);
   clearCardsContainer();
   refs.cardsContainer.insertAdjacentHTML('beforeend', allcardsTpl(filmcards)); 
 }
 
 $(function () {
-  
   $(domContainer).pagination({
-           
       cssStyle: 'dark-theme',
-         
-    onInit: function () {
-      
-      
-      
-      trendFetch()   
-          .then(filmcards => { $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
-            fetchApi.page = pageNumber;
-            
-            console.log(fetchApi.page);
-        trendFetch().then(filmcards => {console.log(filmcards); appendCardsMarkup(filmcards)  })
-				
-				} })); appendCardsMarkup(filmcards) })	
-    },		
+      onInit: function () {
+        trendFetch()
+          .then(filmcards => {
+              $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
+                fetchApi.page = pageNumber;
+                console.log(fetchApi.page);
+                trendFetch().then(filmcards => {console.log(filmcards); appendCardsMarkup(filmcards)  })
+                } })); appendCardsMarkup(filmcards)
+          })
+      },
     });
 });
 
@@ -115,7 +110,7 @@ function generateGenres(movie) {
 
 // год
 function generateData(movie) {
-  console.log(movie, 'here')
+  // console.log(movie, 'here')
   if(movie.release_date == undefined){
     return movie.release_date = 'Soon'
   }else if(movie.release_date) { 
@@ -123,3 +118,5 @@ function generateData(movie) {
     return release_date;
   }
 }
+
+export { onSearch };

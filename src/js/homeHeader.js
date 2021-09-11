@@ -1,9 +1,9 @@
 import { getMoviesDataById } from './fetchMovies';
+import { onSearch } from './paginationFromFetch';
 import Library from '../templates/library.hbs';
 
 const renderLibrary = document.querySelector('#headLibr');
 const includeHeader = document.querySelector('.header__main');
-const includeMain = document.querySelector('.film-gallery-section');
 const librarySection = document.querySelector('.js-librarySection');
 const libraryList = librarySection.querySelector('ul');
 
@@ -15,10 +15,8 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
   const markupWatched = await getMoviesDataById(moviesWatched);
   const markupQueue = await getMoviesDataById(moviesQueue);
 
-  libraryList.insertAdjacentHTML('beforeend', markupWatched);
+  libraryList.innerHTML = markupWatched;
   includeHeader.style.cssText = `display: none`;
-  includeMain.style.cssText = `display: none`;
-  librarySection.style.cssText = `display: block`;
 
   const btnHome = document.querySelector('.js-homeButton');
   btnHome.addEventListener('click', renderHomePage);
@@ -41,33 +39,10 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
 }
 function renderHomePage() {
   renderLibrary.innerHTML = '';
-  libraryList.innerHTML = '';
+  libraryList.innerHTML = onSearch();
   includeHeader.style.cssText = `display: block`;
-  includeMain.style.cssText = `display: block`;
-  librarySection.style.cssText = `display: none`;
 }
 export { renderLibraryPage };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // =================
 // import Library from '../templates/library.hbs';
@@ -90,6 +65,5 @@ export { renderLibraryPage };
 //     includeMain.style.cssText = `display: block`;
 //   }
 // }
-
 
 // ============
