@@ -1,7 +1,6 @@
-// import './sass/main.scss';
 import CardsApiService from '../js/apiService';
 import allcardsTpl from '../templates/film-card';
-
+import getGenres from './movies-genres.json';
 const domContainer = document.querySelector('#js-pagination');
 
 const refs = {
@@ -11,24 +10,27 @@ const refs = {
 }
 
 refs.input.addEventListener('submit', handleInput);
+const fetchApi = new CardsApiService();
 
 function handleInput(e) {
   e.preventDefault();
-  cardsApiService.query = e.currentTarget.elements.query.value.trim();
+  fetchApi.query = e.currentTarget.elements.query.value.trim();
     onSearch();
 }
 
 function clearCardsContainer() {
   refs.cardsContainer.innerHTML = '';
 }
-const cardsApiService = new CardsApiService();
+
 function onSearch() {
-  
-       cardsApiService.fetchCardsonSearch() 
-         .then(filmcards => { $(domContainer).pagination($.extend({}, { items: cardsApiService.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
-        cardsApiService.page = pageNumber;
-        cardsApiService.fetchCardsonSearch() 
-          .then(filmcards => { appendCardsMarkup(filmcards)  })
+  fetchApi.page = 1;
+       searchFetch() 
+         .then(filmcards => {
+          
+            $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
+        fetchApi.page = pageNumber;
+        searchFetch() 
+          .then(filmcards => { console.log(filmcards); appendCardsMarkup(filmcards)  })
 				
 				} })); appendCardsMarkup(filmcards) })
           
@@ -46,8 +48,78 @@ $(function () {
       cssStyle: 'dark-theme',
          
     onInit: function () {
-      cardsApiService.fetchCards()   
-          .then(filmcards => {$(domContainer).pagination(`destroy`); appendCardsMarkup(filmcards)  })	
+      
+      
+      
+      trendFetch()   
+          .then(filmcards => { $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
+            fetchApi.page = pageNumber;
+            
+            console.log(fetchApi.page);
+        trendFetch().then(filmcards => {console.log(filmcards); appendCardsMarkup(filmcards)  })
+				
+				} })); appendCardsMarkup(filmcards) })	
     },		
     });
 });
+
+
+
+const genres = JSON.stringify(getGenres);
+const getObj = JSON.parse(genres);
+
+function trendFetch() {
+ return fetchApi.fetchCards()
+  .then(results => {
+    const change = results.map(movie => {
+      return {
+        ...movie,
+        genre_ids: generateGenres(movie),
+        release_date: generateData(movie),
+      };
+    });
+    console.log(change)
+    return change;
+  })
+  .catch(error => console.log(error));
+}
+
+
+function searchFetch() {
+ return fetchApi.fetchCardsonSearch()
+  .then(results => {
+    const change = results.map(movie => {
+      return {
+        ...movie,
+        genre_ids: generateGenres(movie),
+        release_date: generateData(movie),
+      };
+    });
+    console.log(change)
+    return change;
+  })
+  .catch(error => console.log(error));
+}
+
+
+// жанры
+function generateGenres(movie) {
+  let idsGenre = movie.genre_ids.map(id => {
+    return getObj.find(ganre => ganre.id === id).name;
+  });
+  if (idsGenre.length > 2) {
+    return [...idsGenre.slice(0, 2), 'Other'];
+  }
+  return idsGenre;
+}
+
+// год
+function generateData(movie) {
+  console.log(movie, 'here')
+  if(movie.release_date == undefined){
+    return movie.release_date = 'Soon'
+  }else if(movie.release_date) { 
+    const release_date = Number(movie.release_date.slice(0, 4));
+    return release_date;
+  }
+}

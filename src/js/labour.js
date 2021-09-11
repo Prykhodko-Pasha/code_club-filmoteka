@@ -1,4 +1,4 @@
-import getMoviesDataById from './fetchMovies';
+// import getMoviesDataById from './fetchMovies';
 import filmCard from '../templates/film-card.hbs';
 
 import CardsApiService from './apiService'
@@ -15,14 +15,17 @@ const refs = {
 
 const API_KEY = '23824187957955af0aa1cb82b26c80b5';
 const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week'; 
-const urlForTrend = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`;
+const urlForTrend = `${BASE_URL}?api_key=${API_KEY}&language=en-US`;
 
+const BASE_MOVIE_URL = 'https://api.themoviedb.org/3/movie';
+// const url_movie = `${BASE_MOVIE_URL}/{movie_id}?api_key=${API_KEY}&language=en-US`;
 
 
 const fetchApi = new CardsApiService();
   
 fetchApi.fetchCards(urlForTrend)
   .then(results => {   
+    // console.log(results)
       const change = results.map(movie => {
         // console.log(movie)
         return {
@@ -36,6 +39,9 @@ fetchApi.fetchCards(urlForTrend)
     })
     .then(renderMoviesCard)
     .catch(error => console.log(error));
+
+
+
 
 
 
