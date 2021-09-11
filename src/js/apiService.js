@@ -11,10 +11,10 @@ export default class CardsApiService {
     
     fetchCardsonSearch() {
         
-        return fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMD_KEY}&query=${this.searchQuery}&page=${this.page}`)
+        return fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${TMD_KEY}&page=${this.page}`)
             .then(response => response.json())
             .then(results => {
-                this.totalResults = results.total_results;
+                // this.totalResults = results.total_results;
         return results.results;
             })
             .catch(error => Promise.reject(error));   
@@ -22,7 +22,7 @@ export default class CardsApiService {
 
     fetchCards() {
         
-        return fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${TMD_KEY}`)
+        return fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${TMD_KEY}&page=${this.page}`)
             .then(response => response.json())
             .then(results => {
                 this.totalResuls = results.total_results;

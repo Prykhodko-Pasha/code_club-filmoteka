@@ -23,7 +23,8 @@ function onSearch(e) {
     }
     
     newsApiService.resetPage();
-    newsApiService.fetchFilms().then(results => {
+    // оставить fetchCardsonSearch!!!!
+    newsApiService.fetchCardsonSearch().then(results => {
         clearGalleryContainer();
         appendFilmsMarkup(results);
     });
