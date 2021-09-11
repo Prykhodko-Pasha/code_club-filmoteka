@@ -17,27 +17,29 @@ const urlForTrend = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`;
 
 const fetchApi = new CardsApiService();
   
-fetchApi.fetchCards(urlForTrend)
-  .then(results => {   
-      const change = results.map(movie => {
-        // console.log(movie)
-        return {
-          ...movie,
-          genre_ids: generateGenres(movie),
-          release_date: generateData(movie),
-        };
-      });
-      // console.log(change)
-      return change;
-    })
-    .then(renderMoviesCard)
-    .catch(error => console.log(error));
+
+ export default fetchApi.fetchCards()
+  .then(results => {
+   
+    const change = results.map(movie => {
+      // console.log(movie)
+      return {
+        ...movie,
+        genre_ids: generateGenres(movie),
+        release_date: generateData(movie),
+      };
+    });
+    console.log(change)
+    return change;
+  })
+  .then(renderMoviesCard)
+  .catch(error => console.log(error));
 
 
 
 // разметка
 function renderMoviesCard(movie) {
-  // console.log(movie,'this is from render')
+  console.log(movie,'this is from render')
   const markup = filmCard(movie);
   refs.filmGallery.innerHTML = markup;
 }

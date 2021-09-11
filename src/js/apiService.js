@@ -5,7 +5,7 @@ export default class CardsApiService {
     constructor() {
         this.searchQuery = '';
         this.page = 1;
-        this.totalResults = 20000;
+        this.totalResults = 2000;
         this.currentPage = 1;
     }
     
@@ -25,8 +25,8 @@ export default class CardsApiService {
         return fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${TMD_KEY}&page=${this.page}`)
             .then(response => response.json())
             .then(results => {
-                this.totalResuls = results.total_results;
-                console.log(results.total_results)
+                // this.totalResults = results.total_results;
+                console.log(this.page)
         return results.results;
             })
             .catch(error => Promise.reject(error));
