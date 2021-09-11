@@ -1,8 +1,8 @@
+
 // import getMoviesDataById from './fetchMovies';
 import filmCard from '../templates/film-card.hbs';
-
-import CardsApiService from './apiService'
 import getGenres from './movies-genres.json';
+import CardsApiService from './apiService'
 
 // inner genres obj
 const genres = JSON.stringify(getGenres);
@@ -15,15 +15,16 @@ const refs = {
 
 const API_KEY = '23824187957955af0aa1cb82b26c80b5';
 const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week'; 
-const urlForTrend = `${BASE_URL}?api_key=${API_KEY}&language=en-US`;
 
+const urlForTrend = `${BASE_URL}?api_key=${API_KEY}&language=en-US&page=1`;
 const BASE_MOVIE_URL = 'https://api.themoviedb.org/3/movie';
 // const url_movie = `${BASE_MOVIE_URL}/{movie_id}?api_key=${API_KEY}&language=en-US`;
 
 
+
 const fetchApi = new CardsApiService();
-  
-fetchApi.fetchCards(urlForTrend)
+
+ export default fetchApi.fetchCards(urlForTrend)
   .then(results => {   
     // console.log(results)
       const change = results.map(movie => {
@@ -42,11 +43,9 @@ fetchApi.fetchCards(urlForTrend)
 
 
 
-
-
-
 // разметка
 function renderMoviesCard(movie) {
+  console.log(movie,'this is from render')
   const markup = filmCard(movie);
   refs.filmGallery.innerHTML = markup;
 }
@@ -64,14 +63,16 @@ function generateGenres(movie) {
 
 // год
 function generateData(movie) {
-  if(movie.release_date == undefined || null){   
+  if(movie.release_date == undefined){   
     // console.log("unknown") 
     return movie.release_date = "unknown";    
-  }  else
-   if(movie.release_date) { 
+  }  else if(movie.release_date) { 
     const release_date = Number(movie.release_date.slice(0, 4));
     return release_date;
   }
+
+}
+
 }
 
 
@@ -99,3 +100,4 @@ function generateData(movie) {
 //   })
 //   .then(renderMoviesCard)
 //   .catch(error => console.log(error));
+

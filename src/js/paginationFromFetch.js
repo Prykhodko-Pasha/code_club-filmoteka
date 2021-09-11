@@ -37,7 +37,7 @@ function onSearch() {
 }
 
 function appendCardsMarkup(filmcards) {
-  console.log(filmcards);
+//   console.log(filmcards);
   clearCardsContainer();
   refs.cardsContainer.insertAdjacentHTML('beforeend', allcardsTpl(filmcards)); 
 }
@@ -73,7 +73,7 @@ function trendFetch() {
         release_date: generateData(movie),
       };
     });
-    console.log(change)
+//     console.log(change)
     return change;
   })
   .catch(error => console.log(error));
@@ -90,7 +90,7 @@ function searchFetch() {
         release_date: generateData(movie),
       };
     });
-    console.log(change)
+//     console.log(change)
     return change;
   })
   .catch(error => console.log(error));
@@ -110,7 +110,6 @@ function generateGenres(movie) {
 
 // год
 function generateData(movie) {
-  // console.log(movie, 'here')
   if(movie.release_date == undefined){
     return movie.release_date = 'Soon'
   }else if(movie.release_date) { 
