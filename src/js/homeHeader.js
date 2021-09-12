@@ -18,8 +18,8 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
   libraryList.innerHTML = markupWatched;
   includeHeader.style.cssText = `display: none`;
 
-  // const btnHome = document.querySelector('.js-homeButton');
-  // btnHome.addEventListener('click', renderHomePage);
+  const btnHome = document.querySelector('.js-homeButton');
+  btnHome.addEventListener('click', homePage);
 
   const buttonWatched = document.querySelector('.js-buttonWatched');
   const buttonQueue = document.querySelector('.js-buttonQueue');
