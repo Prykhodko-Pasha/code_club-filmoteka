@@ -28,13 +28,20 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
     buttonWatched.classList.add('current-btn');
     buttonQueue.classList.remove('current-btn');
 
-    libraryList.innerHTML = markupWatched;
+    libraryList.innerHTML = markupWatched; 
+
+    const btnsAddWatched = document.querySelectorAll('.toWatched'); 
+    const btnsAddQueue = document.querySelectorAll('.toQueue')
+    addHidden(btnsAddQueue);
+    removeWatched(btnsAddWatched)
   });
   buttonQueue.addEventListener('click', () => {
     buttonQueue.classList.add('current-btn');
     buttonWatched.classList.remove('current-btn');
 
-    libraryList.innerHTML = markupQueue;
+    libraryList.innerHTML = markupQueue; 
+    const btnsAddQueue = document.querySelectorAll('.toQueue');      
+    onQueue(btnsAddQueue) 
   });
 }
 function renderHomePage() {
@@ -44,26 +51,65 @@ function renderHomePage() {
 }
 export { renderLibraryPage };
 
-// =================
-// import Library from '../templates/library.hbs';
-// const renderLibrary = document.querySelector('#headLibr');
-// const includeHeader = document.querySelector('.header__main');
-// const includeMain = document.querySelector('.film-gallery-section');
 
-// const btnLibrary = document.querySelector('#library');
-// btnLibrary.addEventListener('click', onLibrary);
 
-// function onLibrary() {
-//   renderLibrary.insertAdjacentHTML('beforeend', Library());
-//   const btnHome = document.querySelector('#home');
-//   btnHome.addEventListener('click', onHome);
-//   includeHeader.style.cssText = `display: none`;
-//   includeMain.style.cssText = `display: none`;
-//   function onHome() {
-//     renderLibrary.innerHTML = '';
-//     includeHeader.style.cssText = `display: block`;
-//     includeMain.style.cssText = `display: block`;
-//   }
+// ==============Юля
+const btnsAddWatched = document.querySelectorAll('.toWatched'); 
+// const btnsAddQueue = document.querySelectorAll('.toQueue');  
+
+
+const btnLibrary = document.querySelector('#library')
+btnLibrary.addEventListener('click', console.log('bum'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function removeJsClass(arr){
+//   arr.forEach(el =>{
+//     if(el.classList.contains('js-addToWatched')){
+//       el.classList.remove('js-addToWatched')
+//     }else if(el.classList.contains('js-addToQueue')){
+//       el.classList.remove('js-addToQueue')
+//     }
+//   })
+// }
+function removeWatched(arr){
+  arr.forEach(el =>{
+    el.textContent = "Remove from Watched"
+  })
+}
+function onQueue(arr){
+  arr.forEach(el =>{
+    el.textContent = "Remove from Queue"
+  })
+}     
+function addHidden(arr){
+  arr.forEach(el =>{
+    el.classList.add('visually-hidden');
+  })
+}    
+// function onWatched(arr){
+//   arr.forEach(el =>{
+//     el.textContent = "Add to Watched"
+//   })
 // }
 
+// function hiddenRemove(arr){
+//   arr.forEach(el =>{
+//     el.classList.remove('visually-hidden');
+//   })
+// }
 // ============
+

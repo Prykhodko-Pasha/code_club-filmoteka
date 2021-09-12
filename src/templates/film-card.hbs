@@ -10,24 +10,31 @@
  
 
     <div class='film-gallery__desc'>
-      <p class='film-gallery__name'>
+    {{#if original_title}}
+    <p class='film-gallery__name'>
         {{original_title}}
-      </p>
+    </p>
+    {{else}}<p class='film-gallery__name'>{{name}}<p>
+      {{/if}}
+
       <p>        
           {{#each genre_ids}}
             <span class='film-gallery__genre'> {{this}}</span>
           {{/each}}
         <span class='film-gallery__year'>
           &#124; {{release_date}}
-        </span>
+        </span>    
+        <span class='film-gallery__vote'>{{vote_average}}</span>
       </p>
     </div>
 
     <div class='film-gallery__buttons'>
-      <button class='film-gallery__button js-addToWatched' data-id='{{id}}'>Add to Watched</button>
-      <button class='film-gallery__button js-addToQueue' data-id='{{id}}'>Add to Queue</button>
+      <button class='film-gallery__button js-addToWatched toWatched' data-id='{{id}}'>
+      Add to Watched</button>
+      <button class='film-gallery__button  js-addToQueue toQueue' data-id='{{id}}'>
+        Add to Queue</button>
     </div>
-    </div>
+    
   </li>
 {{/each}} 
 

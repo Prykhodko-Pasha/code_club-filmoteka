@@ -37,13 +37,21 @@ function normaliseMovies(movies) {
       ...movie,
       genre_ids: generateGenres(movie),
       release_date: generateData(movie),
+      vote_average: generateVote(movie),
     });
   }
   return result;
 }
 
 
-// год
+// rate
+function generateVote(movie){
+  if(movie.vote_average){
+    const vote_average = movie.vote_average.toFixed(1);
+    return vote_average;
+  }
+}
+// year
 function generateData(movie) {
   if (movie.release_date == undefined) {
     return (movie.release_date = 'Soon');
@@ -52,7 +60,7 @@ function generateData(movie) {
     return release_date;
   }
 }
-// жанры
+// genres
 function generateGenres(movie) {
   let idsGenre = movie.genre_ids.map(id => {
     return getObj.find(ganre => ganre.id === id).name;
