@@ -1,5 +1,5 @@
 import { getMoviesDataById } from './fetchMovies';
-import { onSearch } from './paginationFromFetch';
+import homePage from './paginationFromFetch';
 import Library from '../templates/library.hbs';
 
 const renderLibrary = document.querySelector('#headLibr');
@@ -8,18 +8,22 @@ const librarySection = document.querySelector('.js-librarySection');
 const libraryList = librarySection.querySelector('ul');
 
 const btnHome = document.querySelector('.js-homeButton');
-btnHome.addEventListener('click', renderHomePage);
+btnHome.addEventListener('click', homePage);
 
 async function renderLibraryPage(moviesWatched, moviesQueue) {
   renderLibrary.insertAdjacentHTML('beforeend', Library());
   const markupWatched = await getMoviesDataById(moviesWatched);
   const markupQueue = await getMoviesDataById(moviesQueue);
+  
+
+  const logoHomePageLibrary = document.querySelector('.header-library-logo');
+  logoHomePageLibrary.addEventListener('click', homePage);
 
   libraryList.innerHTML = markupWatched;
   includeHeader.style.cssText = `display: none`;
 
   const btnHome = document.querySelector('.js-homeButton');
-  btnHome.addEventListener('click', renderHomePage);
+  btnHome.addEventListener('click', homePage);
 
   const buttonWatched = document.querySelector('.js-buttonWatched');
   const buttonQueue = document.querySelector('.js-buttonQueue');
@@ -44,13 +48,7 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
     onQueue(btnsAddQueue) 
   });
 }
-function renderHomePage() {
-  renderLibrary.innerHTML = '';
-  libraryList.innerHTML = onSearch();
-  includeHeader.style.cssText = `display: block`;
-}
 export { renderLibraryPage };
-
 
 
 // ==============Юля
@@ -60,20 +58,6 @@ const btnsAddWatched = document.querySelectorAll('.toWatched');
 
 const btnLibrary = document.querySelector('#library')
 btnLibrary.addEventListener('click', console.log('bum'))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // function removeJsClass(arr){
@@ -111,5 +95,7 @@ function addHidden(arr){
 //     el.classList.remove('visually-hidden');
 //   })
 // }
-// ============
+
+
+
 

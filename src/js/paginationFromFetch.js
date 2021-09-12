@@ -23,14 +23,14 @@ function clearCardsContainer() {
 }
 
 function onSearch() {
-  fetchApi.page = 1;
+  fetchApi.resetPage();
        searchFetch() 
          .then(filmcards => {
           
             $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
         fetchApi.page = pageNumber;
         searchFetch() 
-          .then(filmcards => { console.log(filmcards); appendCardsMarkup(filmcards)  })
+          .then(filmcards => {  appendCardsMarkup(filmcards)  })
 				
 				} })); appendCardsMarkup(filmcards) })
           
@@ -42,18 +42,24 @@ function appendCardsMarkup(filmcards) {
   refs.cardsContainer.insertAdjacentHTML('beforeend', allcardsTpl(filmcards)); 
 }
 
+export default function homePage() {
+  fetchApi.resetPage();
+  trendFetch()
+          .then(filmcards => {
+              $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
+                fetchApi.page = pageNumber;
+                
+                trendFetch().then(filmcards => { appendCardsMarkup(filmcards)  })
+                } })); appendCardsMarkup(filmcards)
+          })
+          renderHomePage()
+}
+
 $(function () {
   $(domContainer).pagination({
       cssStyle: 'dark-theme',
       onInit: function () {
-        trendFetch()
-          .then(filmcards => {
-              $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
-                fetchApi.page = pageNumber;
-                console.log(fetchApi.page);
-                trendFetch().then(filmcards => {console.log(filmcards); appendCardsMarkup(filmcards)  })
-                } })); appendCardsMarkup(filmcards)
-          })
+        homePage()
       },
     });
 });
@@ -119,4 +125,10 @@ function generateData(movie) {
   }
 }
 
-export { onSearch };
+// export { onSearch };
+function renderHomePage() {
+  const renderLibrary = document.querySelector('#headLibr');
+const includeHeader = document.querySelector('.header__main');
+  renderLibrary.innerHTML = '';
+  includeHeader.style.cssText = `display: block`;
+}
