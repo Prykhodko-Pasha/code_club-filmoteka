@@ -14,6 +14,10 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
   renderLibrary.insertAdjacentHTML('beforeend', Library());
   const markupWatched = await getMoviesDataById(moviesWatched);
   const markupQueue = await getMoviesDataById(moviesQueue);
+  
+
+  const logoHomePageLibrary = document.querySelector('.header-library-logo');
+  logoHomePageLibrary.addEventListener('click', homePage);
 
   libraryList.innerHTML = markupWatched;
   includeHeader.style.cssText = `display: none`;
