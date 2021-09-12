@@ -57,6 +57,7 @@ button {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.17;
+  cursor: pointer;
 }
 .header__site--nav_link:hover {
   color: var(--extract-orange-color);
@@ -91,6 +92,7 @@ button {
   display: flex;
   align-items: center;
   color: #ffffff;
+  cursor: pointer;
 }
 .header__navigator--logo:hover {
   color: var(--extract-orange-color);
