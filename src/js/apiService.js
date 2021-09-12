@@ -25,7 +25,7 @@ export default class CardsApiService {
         return fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${TMD_KEY}&page=${this.page}`)
             .then(response => response.json())
             .then(results => {
-                // this.totalResults = results.total_results;
+                this.totalResults = 2000;
                 console.log(this.page)
         return results.results;
             })
