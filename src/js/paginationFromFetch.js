@@ -49,7 +49,7 @@ export default function homePage() {
               $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
                 fetchApi.page = pageNumber;
                 
-                trendFetch().then(filmcards => {console.log(filmcards); appendCardsMarkup(filmcards)  })
+                trendFetch().then(filmcards => { appendCardsMarkup(filmcards)  })
                 } })); appendCardsMarkup(filmcards)
           })
 }
