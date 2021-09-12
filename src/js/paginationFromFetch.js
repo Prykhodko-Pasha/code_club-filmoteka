@@ -30,7 +30,7 @@ function onSearch() {
             $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
         fetchApi.page = pageNumber;
         searchFetch() 
-          .then(filmcards => { console.log(filmcards); appendCardsMarkup(filmcards)  })
+          .then(filmcards => {  appendCardsMarkup(filmcards)  })
 				
 				} })); appendCardsMarkup(filmcards) })
           
@@ -48,7 +48,7 @@ export default function homePage() {
           .then(filmcards => {
               $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
                 fetchApi.page = pageNumber;
-                console.log(fetchApi.page);
+                
                 trendFetch().then(filmcards => {console.log(filmcards); appendCardsMarkup(filmcards)  })
                 } })); appendCardsMarkup(filmcards)
           })
@@ -123,4 +123,4 @@ function generateData(movie) {
   }
 }
 
-export { onSearch };
+// export { onSearch };
