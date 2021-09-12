@@ -52,6 +52,7 @@ export default function homePage() {
                 trendFetch().then(filmcards => { appendCardsMarkup(filmcards)  })
                 } })); appendCardsMarkup(filmcards)
           })
+          renderHomePage()
 }
 
 $(function () {
@@ -124,3 +125,9 @@ function generateData(movie) {
 }
 
 // export { onSearch };
+function renderHomePage() {
+  const renderLibrary = document.querySelector('#headLibr');
+const includeHeader = document.querySelector('.header__main');
+  renderLibrary.innerHTML = '';
+  includeHeader.style.cssText = `display: block`;
+}
