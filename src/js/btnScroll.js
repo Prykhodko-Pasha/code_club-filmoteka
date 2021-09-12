@@ -1,6 +1,7 @@
 const btnUp = document.querySelector('.flowing__scroll-up');
 const btnDown = document.querySelector('.flowing__scroll-down');
 const vwBody = document.querySelector('body');
+const footer = document.querySelector('.footer');
 
 window.addEventListener('scroll', hiddenScroll(btnUp));
 btnUp.addEventListener('click', scrollUp);
@@ -30,3 +31,17 @@ function scrollDown() {
     behavior: 'smooth',
   });
 }
+function onEntry(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      btnDown.classList.add('hidden__scroll');
+    } else {
+      btnDown.classList.remove('hidden__scroll');
+    }
+  });
+}
+
+const options = {};
+
+const observer = new IntersectionObserver(onEntry, options);
+observer.observe(footer);
