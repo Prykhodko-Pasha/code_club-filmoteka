@@ -1,5 +1,5 @@
 import CardsApiService from '../js/apiService';
-import allcardsTpl from '../templates/film-card';
+import allcardsTpl from '../templates/film-card.hbs';
 import getGenres from './movies-genres.json';
 const domContainer = document.querySelector('#js-pagination');
 
@@ -65,14 +65,14 @@ $(function () {
 });
 
 
-
 const genres = JSON.stringify(getGenres);
 const getObj = JSON.parse(genres);
 
 function trendFetch() {
  return fetchApi.fetchCards()
   .then(results => {
-    const change = results.map(movie => {
+    console.log(results)
+      const change = results.map(movie => {
       return {
         ...movie,
         genre_ids: generateGenres(movie),
@@ -113,6 +113,7 @@ function generateGenres(movie) {
   }
   return idsGenre;
 }
+
 
 // год
 function generateData(movie) {

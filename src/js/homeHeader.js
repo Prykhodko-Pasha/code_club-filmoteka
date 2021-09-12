@@ -32,15 +32,70 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
     buttonWatched.classList.add('current-btn');
     buttonQueue.classList.remove('current-btn');
 
-    libraryList.innerHTML = markupWatched;
+    libraryList.innerHTML = markupWatched; 
+
+    const btnsAddWatched = document.querySelectorAll('.toWatched'); 
+    const btnsAddQueue = document.querySelectorAll('.toQueue')
+    addHidden(btnsAddQueue);
+    removeWatched(btnsAddWatched)
   });
   buttonQueue.addEventListener('click', () => {
     buttonQueue.classList.add('current-btn');
     buttonWatched.classList.remove('current-btn');
 
-    libraryList.innerHTML = markupQueue;
+    libraryList.innerHTML = markupQueue; 
+    const btnsAddQueue = document.querySelectorAll('.toQueue');      
+    onQueue(btnsAddQueue) 
   });
 }
-
 export { renderLibraryPage };
+
+
+// ==============Юля
+const btnsAddWatched = document.querySelectorAll('.toWatched'); 
+// const btnsAddQueue = document.querySelectorAll('.toQueue');  
+
+
+const btnLibrary = document.querySelector('#library')
+btnLibrary.addEventListener('click', console.log('bum'))
+
+
+// function removeJsClass(arr){
+//   arr.forEach(el =>{
+//     if(el.classList.contains('js-addToWatched')){
+//       el.classList.remove('js-addToWatched')
+//     }else if(el.classList.contains('js-addToQueue')){
+//       el.classList.remove('js-addToQueue')
+//     }
+//   })
+// }
+function removeWatched(arr){
+  arr.forEach(el =>{
+    el.textContent = "Remove from Watched"
+  })
+}
+function onQueue(arr){
+  arr.forEach(el =>{
+    el.textContent = "Remove from Queue"
+  })
+}     
+function addHidden(arr){
+  arr.forEach(el =>{
+    el.classList.add('visually-hidden');
+  })
+}    
+// function onWatched(arr){
+//   arr.forEach(el =>{
+//     el.textContent = "Add to Watched"
+//   })
+// }
+
+// function hiddenRemove(arr){
+//   arr.forEach(el =>{
+//     el.classList.remove('visually-hidden');
+//   })
+// }
+
+
+
 

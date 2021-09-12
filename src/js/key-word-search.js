@@ -1,4 +1,4 @@
-import filmCardTpl from '../templates/film-key-word-card.hbs';
+import filmCardTpl from '../templates/film-card.hbs';
 import NewsApiService from './apiService';
 
 

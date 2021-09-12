@@ -2,19 +2,33 @@
 
 <li class='film-gallery__item'>
 
-  <img class="film-gallery__img" src=https://image.tmdb.org/t/p/w500/{{poster_path}} alt={{title}} width="274" /> 
+  {{#if poster_path}}
+  <img class='film-gallery__img' src='https://image.tmdb.org/t/p/w500{{poster_path}}' alt={{title}} />
+  {{else}}
+  <img class='film-gallery__img' src='https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg'
+    alt={{title}} />
+  {{/if}}
 
   <div class='film-gallery__desc'>
+    {{#if original_title}}
     <p class='film-gallery__name'>
         {{original_title}}
-        </p>
-    <p class='film-gallery__genre'>
+    </p>
+    {{else}}<p class='film-gallery__name'>{{name}}<p>
+      {{/if}}
 
-        <span>{{genre_ids}}</span>
-        &#124; <span class='film-gallery__year'>
-        {{release_date}}
-    </span> 
-    </p>      
-  </div>
+      {{#each genre_ids}}
+            <span class='film-gallery__genre'> {{this}}</span>
+          {{/each}}
+        <span class='film-gallery__year'>
+          &#124; {{release_date}}
+        </span>
+    </p> 
+    </div>
+    <div class='film-gallery__buttons'>
+      <button class='film-gallery__button js-addToWatched' data-id='{{id}}'>Add to Watched</button>
+      <button class='film-gallery__button js-addToQueue' data-id='{{id}}'>Add to Queue</button>
+    </div>     
+  
 </li>
 {{/each}} 
