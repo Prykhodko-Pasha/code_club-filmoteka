@@ -17,15 +17,15 @@
     {{else}}<p class='film-gallery__name'>{{name}}<p>
       {{/if}}
 
-      <p>        
+      <ul class='film-gallery__info list'>        
           {{#each genre_ids}}
-            <span class='film-gallery__genre'> {{this}}</span>
+            <li class='film-gallery__genre'> {{this}}</li>
           {{/each}}
-        <span class='film-gallery__year'>
+        <li class='film-gallery__year'>
           &#124; {{release_date}}
-        </span>    
-        <span class='film-gallery__vote'>{{vote_average}}</span>
-      </p>
+        </li>    
+        <li class='film-gallery__vote'>{{vote_average}}</li>
+      </ul>
     </div>
 
     <div class='film-gallery__buttons'>

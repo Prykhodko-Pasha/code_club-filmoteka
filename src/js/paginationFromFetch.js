@@ -71,12 +71,13 @@ const getObj = JSON.parse(genres);
 function trendFetch() {
  return fetchApi.fetchCards()
   .then(results => {
-    console.log(results)
+    // console.log(results)
       const change = results.map(movie => {
       return {
         ...movie,
         genre_ids: generateGenres(movie),
         release_date: generateData(movie),
+        vote_average: generateVote(movie),
       };
     });
 //     console.log(change)
@@ -94,6 +95,7 @@ function searchFetch() {
         ...movie,
         genre_ids: generateGenres(movie),
         release_date: generateData(movie),
+        vote_average: generateVote(movie),
       };
     });
 //     console.log(change)
@@ -103,7 +105,15 @@ function searchFetch() {
 }
 
 
-// жанры
+// rate
+function generateVote(movie){
+  if(movie.vote_average){
+    const vote_average = movie.vote_average.toFixed(1);
+    return vote_average;
+  }
+}
+
+// genres
 function generateGenres(movie) {
   let idsGenre = movie.genre_ids.map(id => {
     return getObj.find(ganre => ganre.id === id).name;
@@ -115,7 +125,7 @@ function generateGenres(movie) {
 }
 
 
-// год
+// year
 function generateData(movie) {
   if(movie.release_date == undefined){
     return movie.release_date = 'Soon'
@@ -128,7 +138,7 @@ function generateData(movie) {
 // export { onSearch };
 function renderHomePage() {
   const renderLibrary = document.querySelector('#headLibr');
-const includeHeader = document.querySelector('.header__main');
+  const includeHeader = document.querySelector('.header__main');
   renderLibrary.innerHTML = '';
   includeHeader.style.cssText = `display: block`;
 }

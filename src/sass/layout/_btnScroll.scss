@@ -1,10 +1,13 @@
 .flowing__scroll-up {
   position: fixed;
-  bottom: 200px;
+  bottom: 210px;
   cursor: pointer;
   fill: var(--secondary-text-color);
 }
-//=======================================
+.icon__arrow-up,
+  .icon__arrow-down {
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 .flowing__scroll-down {
   position: fixed;
   bottom: 165px;
@@ -28,8 +31,8 @@
   }
   .icon__arrow-up,
   .icon__arrow-down {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 }
 @media screen and (min-width: 768px) {
