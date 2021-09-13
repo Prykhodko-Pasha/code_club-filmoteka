@@ -11,16 +11,15 @@ const btnHome = document.querySelector('.js-homeButton');
 btnHome.addEventListener('click', homePage);
 
 async function renderLibraryPage(moviesWatched, moviesQueue) {
-  renderLibrary.insertAdjacentHTML('beforeend', Library());
+  includeHeader.style.cssText = `display: none`;
+  renderLibrary.innerHTML = Library();
   const markupWatched = await getMoviesDataById(moviesWatched);
   const markupQueue = await getMoviesDataById(moviesQueue);
   
-
   const logoHomePageLibrary = document.querySelector('.header-library-logo');
   logoHomePageLibrary.addEventListener('click', homePage);
 
   libraryList.innerHTML = markupWatched;
-  includeHeader.style.cssText = `display: none`;
 
   const btnHome = document.querySelector('.js-homeButton');
   btnHome.addEventListener('click', homePage);
