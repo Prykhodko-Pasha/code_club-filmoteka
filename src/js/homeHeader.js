@@ -35,10 +35,10 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
     libraryList.innerHTML = markupWatched; 
 
     //buttons
-    const btnsAddWatched = document.querySelectorAll('.toWatched'); 
+    const btnsAddWatched = document.querySelectorAll('.toWatched');
     const btnsAddQueue = document.querySelectorAll('.toQueue')
     addHidden(btnsAddQueue);
-    
+    removeFromWatch(btnsAddWatched)
   });
   buttonQueue.addEventListener('click', () => {
     buttonQueue.classList.add('current-btn');
@@ -48,7 +48,6 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
 
     //buttons    
     const btnsAddQueue = document.querySelectorAll('.toQueue'); 
-    removeFromWatch(btnsAddQueue)
     removeFromQueue(btnsAddQueue)
     
   });
@@ -66,15 +65,15 @@ function removeFromQueue(btnsAddQueue){
       if(el.classList.contains('js-addToQueue')){
         el.classList.remove('js-addToQueue')
         el.classList.add('js-remove')   
-        el.textContent = "Remove from Queue"     
+        el.textContent = "Remove from Queue"   
       }
     })
 }
 
  function removeFromWatch(btnsAddWatched){   
   btnsAddWatched.forEach(el =>{
-    if(el.classList.contains('js-btnsAddWatched')){
-      el.classList.remove('js-btnsAddWatched')
+    if(el.classList.contains('js-addToWatched')){
+      el.classList.remove('js-addToWatched')
       el.classList.add('js-remove')
       el.textContent = "Remove from Watched"
     }

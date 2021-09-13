@@ -21,3 +21,28 @@ modal.addEventListener('click', (e) => {
     modal.style.visibility = 'hidden';
   }
 });
+
+// export default class CardsApiService {
+//   constructor() {
+//       this.movie.id = movie.id
+//   }
+//    fetchCard(){
+       
+//       return fetch(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=23824187957955af0aa1cb82b26c80b5&language=en-US`)
+//       .then(resp => resp.json()).catch(error => console.log(error))
+//     }
+//   }
+
+//  const fetchCard = new CardsApiService()
+// function renderOneMovie(e){
+//   e.preventDefault
+
+//   fetchCard.fetchCard().then(movie =>
+//       return {
+//         ...movie,
+//         genre_ids: generateGenres(movie),
+//         release_date: generateData(movie),
+//         vote_average: generateVote(movie),
+//       };
+// })
+ 

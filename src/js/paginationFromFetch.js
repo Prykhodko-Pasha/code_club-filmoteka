@@ -71,7 +71,7 @@ const getObj = JSON.parse(genres);
 function trendFetch() {
  return fetchApi.fetchCards()
   .then(results => {
-    console.log(results)
+    // console.log(results)
       const change = results.map(movie => {
       return {
         ...movie,
