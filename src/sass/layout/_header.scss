@@ -61,6 +61,7 @@ button {
 }
 .header__site--nav_link:hover {
   color: var(--extract-orange-color);
+  cursor: pointer;
 }
 .header__site-nav_current::after {
   content: '';
