@@ -48,7 +48,9 @@ class FirebaseWork {
           this._hashUserId = hashAuth;
           return snapshot.val();
         }
-        throw new Error('Доступ запрещён. Такой пользователь не найден(');
+        // throw new Error('Доступ запрещён. Такой пользователь не найден(');
+        throw new Error('Please login to be able to use the library.') 
+        // throw alert('Ввойдите пожалуйста, чтоб иметь возможность использовать библиотеку.')
       });
   }
   signUp(userData) {

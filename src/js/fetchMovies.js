@@ -5,7 +5,7 @@ const genres = JSON.stringify(getGenres);
 const getObj = JSON.parse(genres);
 
 const API_KEY = '23824187957955af0aa1cb82b26c80b5';
-const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week';
+// const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week';
 const BASE_MOVIE_URL = 'https://api.themoviedb.org/3/movie';
 
 const url_movie = `${BASE_MOVIE_URL}/{movie_id}?api_key=${API_KEY}&language=en-US&page=1`;
@@ -18,8 +18,6 @@ function getMoviesDataById(movie_ids) {
       fetch(url_movie.replace('{movie_id}', movie_id))
         .then(response => response.json())
         .then(movie => {
-
-          // ===
           movie.genre_ids = movie.genres.map(genre => genre.id);
           movies.results.push(movie);
         })
@@ -43,15 +41,7 @@ function normaliseMovies(movies) {
   return result;
 }
 
-
-// rate
-function generateVote(movie){
-  if(movie.vote_average){
-    const vote_average = movie.vote_average.toFixed(1);
-    return vote_average;
-  }
-}
-// year
+// год
 function generateData(movie) {
   if (movie.release_date == undefined) {
     return (movie.release_date = 'Soon');
@@ -60,7 +50,7 @@ function generateData(movie) {
     return release_date;
   }
 }
-// genres
+// жанры
 function generateGenres(movie) {
   let idsGenre = movie.genre_ids.map(id => {
     return getObj.find(ganre => ganre.id === id).name;
@@ -70,14 +60,26 @@ function generateGenres(movie) {
   }
   return idsGenre;
 }
-
+// rate
+function generateVote(movie){
+  if(movie.vote_average){
+    const vote_average = movie.vote_average.toFixed(1);
+    return vote_average;
+  }
+}
 export { getMoviesDataById };
 
 
 
 
 
- 
+
+
+
+
+
+
+
 // const getMoviesDataBy = new CardsApiService()
 
 
