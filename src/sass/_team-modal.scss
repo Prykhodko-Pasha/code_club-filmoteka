@@ -171,27 +171,53 @@ body.show-modal .footer-modal {
 }
 
 // Кнопки
-.slider .slick-arrow {
+.slick-arrow {
   position: absolute;
   top: 50%;
   margin: -100px 0px 0px 0px;
   font-size: 0;
-  padding: auto;
   border: none;
-}
-.slider .slick-arrow.slick-prev {
-  left: 0;
-  background: url('../images/team-modal/arrow-left.svg') 0 0 /100% no-repeat;
-  fill: var(--secondary-text-color);
+  background: white;
+  border-radius: 50%;
+  transition: all 1.25s;
   width: 50px;
-  height: 46px;
+  height: 50px;
+  &:after {
+    width: 20px;
+    height: 20px;
+    content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: block;
+  transform: rotate(45deg);
+  }
 }
-.slider .slick-arrow.slick-next {
-  right: 0;
-  background: url('../images/team-modal/arrow-right.svg') 0 0 /100% no-repeat;
-  width: 50px;
-  height: 46px;
-  fill: var(--secondary-text-color);
+
+.slick-prev {
+  left: -10px;
+  &:after {
+    transition: all 0.25s;
+    border-left: 4px solid var(--secondary-text-color);
+    border-bottom: 4px solid var(--secondary-text-color);
+  }
+  &:hover:after {
+    border-left: 4px solid var(--extract-orange-color);
+    border-bottom: 4px solid var(--extract-orange-color);
+  }
+}
+
+.slick-next {
+  right: -10px;
+  &:after {
+    transition: all 0.25s;
+    border-right: 4px solid var(--secondary-text-color);
+    border-top: 4px solid var(--secondary-text-color);
+  }
+  &:hover:after {
+    border-right: 4px solid var(--extract-orange-color);
+    border-top: 4px solid var(--extract-orange-color);
+  }
 }
 // .slider__item {
 //   text-align: center;
