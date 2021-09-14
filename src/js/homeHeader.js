@@ -41,11 +41,6 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
     onPopulateRemovedFromWatchedList();
     //====================================
 
-    //buttons
-    // const btnsAddWatched = document.querySelectorAll('.toWatched');
-    // const btnsAddQueue = document.querySelectorAll('.toQueue');
-    // addHidden(btnsAddQueue);
-    // removeFromWatch(btnsAddWatched);
   });
   buttonQueue.addEventListener('click', () => {
     buttonQueue.classList.add('current-btn');
@@ -62,9 +57,6 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
     onPopulateRemovedFromQueueList();
     //======================================
 
-    //buttons
-    // const btnsAddQueue = document.querySelectorAll('.toQueue');
-    // removeFromQueue(btnsAddQueue);
   });
 }
 export { renderLibraryPage };
@@ -113,7 +105,6 @@ export { renderLibraryPage };
 // }
 
 function changeWatchBtns() {
-  // console.log('????????????');
   const btnsWatched = document.querySelectorAll('.toWatched');
   btnsWatched.forEach(btn => {
     btn.innerHTML = '<i class="material-icons js-removeFromWatched"> visibility_off </i></button>';

@@ -147,7 +147,7 @@ function generateGenres(movie) {
 // year
 function generateData(movie) {
   if (movie.release_date == undefined) {
-    return (movie.release_date = 'Soon');
+    return  Number(movie.first_air_date.slice(0, 4));
   } else if (movie.release_date) {
     const release_date = Number(movie.release_date.slice(0, 4));
     return release_date;
