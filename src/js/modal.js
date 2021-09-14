@@ -3,7 +3,8 @@ import modalTemplate from '../templates/modal.hbs';
 
 const modalOpen = document.querySelectorAll('.film-gallery');
 const modal = document.querySelector('.modal');
-const modalClose = document.querySelector('.modal__close');
+const modalCloseBtn = document.querySelector('.modal__close');
+
 
 
 modalOpen.forEach((elem) => {
@@ -12,17 +13,18 @@ modalOpen.forEach((elem) => {
     modal.style.visibility = 'visible';
     modal.insertAdjacentHTML('beforeend', modalTemplate())
   })
-  });
-
-modalClose.addEventListener('click', () => {
+});
+  
+function modalClose() {
   modal.style.opacity = '0';
   modal.style.visibility = 'hidden';
-  clearModal();
-});
-
-function clearModal() {
   modal.innerHTML = '';
 }
+
+modalCloseBtn.addEventListener('click', modalClose);
+
+
+
 // modal.addEventListener('click', (e) => {
 //     e.preventDefault();
 //   if(e.target == modal) {
