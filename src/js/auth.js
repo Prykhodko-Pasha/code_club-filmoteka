@@ -113,7 +113,7 @@ class FirebaseWork {
 
     return new Promise((resolve, reject) => {
       this._database.ref('queue/' + this._hashUserId).set(movieList, error => {
-        console.log(movieList, this._hashUserId);
+     
         if (error) {
           reject(error);
         }
@@ -128,7 +128,7 @@ class FirebaseWork {
 
     return new Promise((resolve, reject) => {
       this._database.ref('watched/' + this._hashUserId).set(movieList, error => {
-        // console.log(movieList, this._hashUserId);
+       
         if (error) {
           reject(error);
         }
@@ -143,7 +143,7 @@ class FirebaseWork {
 
     return new Promise((resolve, reject) => {
       this._database.ref('queue/' + this._hashUserId).set(movieList, error => {
-        // console.log(movieList, this._hashUserId);
+    
         if (error) {
           reject(error);
         }
@@ -190,7 +190,6 @@ class FirebaseWork {
 
   //========= Pasha =========
   function addWatchedIdToLS(id) {
-    // console.log(id);
     if (localStorage.getItem('WatchedList')) {
       const WatchedArr = JSON.parse(localStorage.getItem('WatchedList'));
       WatchedArr.push(id);
@@ -201,7 +200,7 @@ class FirebaseWork {
     }
   }
   function addQueueIdToLS(id) {
-    console.log(id);
+    // console.log(id);
     if (localStorage.getItem('QueueList')) {
       const QueueArr = JSON.parse(localStorage.getItem('QueueList'));
       QueueArr.push(id);
@@ -215,7 +214,7 @@ class FirebaseWork {
   function removeWatchedIdFromLS(id) {
     const watchedArr = JSON.parse(localStorage.getItem('WatchedList'));
     const elToDel = watchedArr.indexOf(id);
-    console.log(elToDel);
+    // console.log(elToDel);
     watchedArr.splice(elToDel, 1);
     localStorage.setItem('WatchedList', JSON.stringify(watchedArr));
   }

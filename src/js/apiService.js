@@ -26,7 +26,7 @@ export default class CardsApiService {
             .then(response => response.json())
             .then(results => {
                 // this.totalResults = results.total_results;
-                console.log(this.page)
+                // console.log(this.page)
         return results.results;
             })
             .catch(error => Promise.reject(error));
