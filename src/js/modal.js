@@ -51,13 +51,68 @@ function onOpenModal(id) {
 }
 
 
-function renderMovieCard(id){    
-  const url = `https://api.themoviedb.org/3/movie/${id}?api_key=1d821060cfc3dc7c024273bf806840e9&language=en-US`;
-      return fetch(url)
-        .then(response => response.json())
-        .then(data => data)
-        .catch(error => Promise.reject(error))
+class renderMovieCard{ 
+    constructor(){
+        this.id = id
+    }   
+ fetchMovie(){
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=1d821060cfc3dc7c024273bf806840e9&language=en-US`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(movie => movie)
+      .catch(error => Promise.reject(error))
+ }
 }
+
+function searchMovie() {
+    return renderMovieCard
+      .fetchMovie()
+      .then(results => {
+        const change = results.map(movie => {
+          return {
+            ...movie,
+            genre_ids: generateGenres(movie),
+            release_date: generateData(movie),
+            vote_average: generateVote(movie),
+          };
+        });
+        return change;
+      })
+      .catch(error => console.log(error));
+  }
+  
+  
+  
+  
+  
+  // rate
+  function generateVote(movie) {
+    if (movie.vote_average) {
+      const vote_average = movie.vote_average.toFixed(1);
+      return vote_average;
+    }
+  }
+  
+  // genres
+  function generateGenres(movie) {
+    let idsGenre = movie.genre_ids.map(id => {
+      return getObj.find(ganre => ganre.id === id).name;
+    });
+    if (idsGenre.length > 2) {
+      return [...idsGenre.slice(0, 2), 'Other'];
+    }
+    return idsGenre;
+  }
+  
+  // year
+  function generateData(movie) {
+    if (movie.release_date == undefined) {
+      return  Number(movie.first_air_date.slice(0, 4));
+    } else if (movie.release_date) {
+      const release_date = Number(movie.release_date.slice(0, 4));
+      return release_date;
+    }
+  }
 
 
      
