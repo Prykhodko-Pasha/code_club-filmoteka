@@ -4,10 +4,10 @@ import getGenres from './movies-genres.json';
 const domContainer = document.querySelector('#js-pagination');
 
 const refs = {
-    input: document.querySelector('.header__search-form'),
-    cardsContainer: document.querySelector('.gallery'),
-    paginateContainer: document.querySelector('#dark-pagination'),
-}
+  input: document.querySelector('.header__search-form'),
+  cardsContainer: document.querySelector('.gallery'),
+  paginateContainer: document.querySelector('#dark-pagination'),
+};
 
 refs.input.addEventListener('submit', handleInput);
 const fetchApi = new CardsApiService();
@@ -15,7 +15,7 @@ const fetchApi = new CardsApiService();
 function handleInput(e) {
   e.preventDefault();
   fetchApi.query = e.currentTarget.elements.query.value.trim();
-    onSearch();
+  onSearch();
 }
 
 function clearCardsContainer() {
@@ -24,90 +24,110 @@ function clearCardsContainer() {
 
 function onSearch() {
   fetchApi.resetPage();
-       searchFetch() 
-         .then(filmcards => {
-          
-            $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
-        fetchApi.page = pageNumber;
-        searchFetch() 
-          .then(filmcards => {  appendCardsMarkup(filmcards)  })
-				
-				} })); appendCardsMarkup(filmcards) })
-          
+  searchFetch().then(filmcards => {
+    $(domContainer).pagination(
+      $.extend(
+        {},
+        {
+          items: fetchApi.totalResults,
+          itemsOnPage: 20,
+          onPageClick: function (pageNumber, event) {
+            fetchApi.page = pageNumber;
+            searchFetch().then(filmcards => {
+              appendCardsMarkup(filmcards);
+            });
+          },
+        },
+      ),
+    );
+    appendCardsMarkup(filmcards);
+  });
 }
 
 function appendCardsMarkup(filmcards) {
-//   console.log(filmcards);
+  //   console.log(filmcards);
   clearCardsContainer();
-  refs.cardsContainer.insertAdjacentHTML('beforeend', allcardsTpl(filmcards)); 
+  refs.cardsContainer.insertAdjacentHTML('beforeend', allcardsTpl(filmcards));
+  onPopulateWatchedList(); //отмечаем просмотренные фильмы
+  onPopulateQueueList(); //отмечаем фильмы в очереди
 }
 
 export default function homePage() {
   fetchApi.resetPage();
-  trendFetch()
-          .then(filmcards => {
-              $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
-                fetchApi.page = pageNumber;
-                
-                trendFetch().then(filmcards => { appendCardsMarkup(filmcards)  })
-                } })); appendCardsMarkup(filmcards)
-          })
-          renderHomePage()
+  trendFetch().then(filmcards => {
+    $(domContainer).pagination(
+      $.extend(
+        {},
+        {
+          items: fetchApi.totalResults,
+          itemsOnPage: 20,
+          onPageClick: function (pageNumber, event) {
+            fetchApi.page = pageNumber;
+
+            trendFetch().then(filmcards => {
+              appendCardsMarkup(filmcards);
+            });
+          },
+        },
+      ),
+    );
+    appendCardsMarkup(filmcards);
+  });
+  renderHomePage();
 }
 
 $(function () {
   $(domContainer).pagination({
-      cssStyle: 'dark-theme',
-      onInit: function () {
-        homePage()
-      },
-    });
+    cssStyle: 'dark-theme',
+    onInit: function () {
+      homePage();
+    },
+  });
 });
-
 
 const genres = JSON.stringify(getGenres);
 const getObj = JSON.parse(genres);
 
 function trendFetch() {
- return fetchApi.fetchCards()
-  .then(results => {
-    // console.log(results)
+  return fetchApi
+    .fetchCards()
+    .then(results => {
+      // console.log(results)
       const change = results.map(movie => {
-      return {
-        ...movie,
-        genre_ids: generateGenres(movie),
-        release_date: generateData(movie),
-        vote_average: generateVote(movie),
-      };
-    });
-//     console.log(change)
-    return change;
-  })
-  .catch(error => console.log(error));
+        return {
+          ...movie,
+          genre_ids: generateGenres(movie),
+          release_date: generateData(movie),
+          vote_average: generateVote(movie),
+        };
+      });
+      //     console.log(change)
+      return change;
+    })
+    .catch(error => console.log(error));
 }
-
 
 function searchFetch() {
- return fetchApi.fetchCardsonSearch()
-  .then(results => {
-    const change = results.map(movie => {
-      return {
-        ...movie,
-        genre_ids: generateGenres(movie),
-        release_date: generateData(movie),
-        vote_average: generateVote(movie),
-      };
-    });
-//     console.log(change)
-    return change;
-  })
-  .catch(error => console.log(error));
+  return fetchApi
+    .fetchCardsonSearch()
+    .then(results => {
+      const change = results.map(movie => {
+        return {
+          ...movie,
+          genre_ids: generateGenres(movie),
+          release_date: generateData(movie),
+          vote_average: generateVote(movie),
+        };
+      });
+      //     console.log(change)
+      return change;
+    })
+    .catch(error => console.log(error));
 }
 
-
 // rate
-function generateVote(movie){
-  if(movie.vote_average){
+function generateVote(movie) {
+  if (movie.vote_average) {
     const vote_average = movie.vote_average.toFixed(1);
     return vote_average;
   }
@@ -124,12 +144,11 @@ function generateGenres(movie) {
   return idsGenre;
 }
 
-
 // year
 function generateData(movie) {
-  if(movie.release_date == undefined){
-    return movie.release_date = 'Soon'
-  }else if(movie.release_date) { 
+  if (movie.release_date == undefined) {
+    return (movie.release_date = 'Soon');
+  } else if (movie.release_date) {
     const release_date = Number(movie.release_date.slice(0, 4));
     return release_date;
   }
@@ -141,4 +160,42 @@ function renderHomePage() {
   const includeHeader = document.querySelector('.header__main');
   renderLibrary.innerHTML = '';
   includeHeader.style.cssText = `display: block`;
+}
+
+//Pasha
+function onPopulateWatchedList() {
+  // console.log('!!!!!!!!!!!!!!!!!!!!!!');
+  if (localStorage.getItem('WatchedList')) {
+    const watchedArr = JSON.parse(localStorage.getItem('WatchedList'));
+    // console.log(watchedArr);
+    const btnsWatchedList = document.querySelectorAll('.toWatched');
+    // console.log(btnsWatchedList);
+    // const moviesIds = moviesList.map(item => item.dataset.id);
+    btnsWatchedList.forEach(btn => {
+      // console.log(btn.disabled);
+      // console.log(btn.dataset.id);
+      if (watchedArr.includes(btn.dataset.id)) {
+        btn.disabled = true;
+        // console.log(btn.disabled);
+      }
+    });
+  }
+}
+function onPopulateQueueList() {
+  // console.log('!!!!!!!!!!!!!!!!!!!!!!');
+  if (localStorage.getItem('QueueList')) {
+    const QueueArr = JSON.parse(localStorage.getItem('QueueList'));
+    // console.log(watchedArr);
+    const btnsQueueList = document.querySelectorAll('.toQueue');
+    // console.log(btnsWatchedList);
+    // const moviesIds = moviesList.map(item => item.dataset.id);
+    btnsQueueList.forEach(btn => {
+      // console.log(btn.disabled);
+      // console.log(btn.dataset.id);
+      if (QueueArr.includes(btn.dataset.id)) {
+        btn.disabled = true;
+        // console.log(btn.disabled);
+      }
+    });
+  }
 }
