@@ -15,11 +15,14 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
   renderLibrary.innerHTML = Library();
   const markupWatched = await getMoviesDataById(moviesWatched);
   const markupQueue = await getMoviesDataById(moviesQueue);
-  
+
   const logoHomePageLibrary = document.querySelector('.header-library-logo');
   logoHomePageLibrary.addEventListener('click', homePage);
 
   libraryList.innerHTML = markupWatched;
+  //=============== Pasha ===============
+  changeWatchBtns();
+  //====================================
 
   const btnHome = document.querySelector('.js-homeButton');
   btnHome.addEventListener('click', homePage);
@@ -31,56 +34,112 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
     buttonWatched.classList.add('current-btn');
     buttonQueue.classList.remove('current-btn');
 
-    libraryList.innerHTML = markupWatched; 
+    libraryList.innerHTML = markupWatched;
+
+    //=============== Pasha ===============
+    changeWatchBtns();
+    onPopulateRemovedFromWatchedList();
+    //====================================
 
     //buttons
-    const btnsAddWatched = document.querySelectorAll('.toWatched');
-    const btnsAddQueue = document.querySelectorAll('.toQueue')
-    addHidden(btnsAddQueue);
-    removeFromWatch(btnsAddWatched)
+    // const btnsAddWatched = document.querySelectorAll('.toWatched');
+    // const btnsAddQueue = document.querySelectorAll('.toQueue');
+    // addHidden(btnsAddQueue);
+    // removeFromWatch(btnsAddWatched);
   });
   buttonQueue.addEventListener('click', () => {
     buttonQueue.classList.add('current-btn');
     buttonWatched.classList.remove('current-btn');
 
-    libraryList.innerHTML = markupQueue; 
+    libraryList.innerHTML = markupQueue;
 
-    //buttons    
-    const btnsAddQueue = document.querySelectorAll('.toQueue'); 
-    removeFromQueue(btnsAddQueue)
-    
+    //=============== Pasha ===============
+    const btnsQueue = document.querySelectorAll('.toQueue');
+    btnsQueue.forEach(btn => {
+      btn.innerHTML = '<i class="material-icons js-removeFromQueue"> delete_sweep </i></button>';
+      btn.title = 'Remove from Queue';
+    });
+    onPopulateRemovedFromQueueList();
+    //======================================
+
+    //buttons
+    // const btnsAddQueue = document.querySelectorAll('.toQueue');
+    // removeFromQueue(btnsAddQueue);
   });
 }
 export { renderLibraryPage };
-
 
 // ==============Юля
 // const btnLibrary = document.querySelector('#library')
 // btnLibrary.addEventListener('click', console.log('bum'))
 
+// function removeFromQueue(btnsAddQueue) {
+//   btnsAddQueue.forEach(el => {
+//     if (el.classList.contains('js-addToQueue')) {
+//       el.classList.remove('js-addToQueue');
+//       el.classList.add('js-remove');
+//       el.title = 'Remove from Queue';
+//       // el.innerHTML = '<i class="material-icons"> delete_sweep </i></button>';
+//     }
+//   });
+// }
 
-function removeFromQueue(btnsAddQueue){ 
-  btnsAddQueue.forEach(el =>{
-      if(el.classList.contains('js-addToQueue')){
-        el.classList.remove('js-addToQueue')
-        el.classList.add('js-remove')   
-        el.textContent = "Remove from Queue"   
+// function removeFromWatch(btnsAddWatched) {
+//   btnsAddWatched.forEach(el => {
+//     if (el.classList.contains('js-addToWatched')) {
+//       el.classList.remove('js-addToWatched');
+//       el.classList.add('js-remove');
+//       el.textContent = 'Remove from Watched';
+//     }
+//   });
+// }
+
+// function addHidden(arr) {
+//   arr.forEach(el => {
+//     el.classList.add('visually-hidden');
+//   });
+// }
+
+//Pasha
+// function removeWatchedIdFromLS(id) {
+//   const watchedArr = JSON.parse(localStorage.getItem('WatchedList'));
+//   const elToDel = watchedArr.indexOf(id);
+//   watchedArr.splice(elToDel, 1);
+//   localStorage.setItem('WatchedList', JSON.stringify(watchedArr));
+
+//   // const favArr = JSON.parse(localStorage.getItem('favList'));
+//   // favArr.splice(elToDel, 1);
+//   // localStorage.setItem('favList', JSON.stringify(favArr));
+// }
+
+function changeWatchBtns() {
+  // console.log('????????????');
+  const btnsWatched = document.querySelectorAll('.toWatched');
+  btnsWatched.forEach(btn => {
+    btn.innerHTML = '<i class="material-icons js-removeFromWatched"> visibility_off </i></button>';
+    btn.title = 'Remove from Watched';
+  });
+}
+
+function onPopulateRemovedFromWatchedList() {
+  if (localStorage.getItem('WatchedList')) {
+    const watchedArr = JSON.parse(localStorage.getItem('WatchedList'));
+    const btnsWatchedList = document.querySelectorAll('.toWatched');
+    btnsWatchedList.forEach(btn => {
+      if (!watchedArr.includes(btn.dataset.id)) {
+        btn.disabled = true;
       }
-    })
+    });
+  }
 }
-
- function removeFromWatch(btnsAddWatched){   
-  btnsAddWatched.forEach(el =>{
-    if(el.classList.contains('js-addToWatched')){
-      el.classList.remove('js-addToWatched')
-      el.classList.add('js-remove')
-      el.textContent = "Remove from Watched"
-    }
-  })
+function onPopulateRemovedFromQueueList() {
+  if (localStorage.getItem('QueueList')) {
+    const queueArr = JSON.parse(localStorage.getItem('QueueList'));
+    const btnsQueueList = document.querySelectorAll('.toQueue');
+    btnsQueueList.forEach(btn => {
+      if (!queueArr.includes(btn.dataset.id)) {
+        btn.disabled = true;
+      }
+    });
+  }
 }
-   
-function addHidden(arr){
-  arr.forEach(el =>{
-    el.classList.add('visually-hidden');
-  })
-}    
