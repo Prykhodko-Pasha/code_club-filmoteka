@@ -24,51 +24,60 @@ function clearCardsContainer() {
 
 function onSearch() {
   fetchApi.page = 1;
-       searchFetch() 
-         .then(filmcards => {
-          
-            $(domContainer).pagination($.extend({}, { items: fetchApi.totalResults, itemsOnPage: 20, onPageClick: function (pageNumber, event) {
-        fetchApi.page = pageNumber;
-        searchFetch() 
-          .then(filmcards => { console.log(filmcards); appendCardsMarkup(filmcards)  })
-				
-            }
-            })); appendCardsMarkup(filmcards)
-         })
-  // ===========================================================
-//           const list = document.querySelector('.film-gallery');
-//           list.addEventListener('click', renderCard);
-
-//           function renderCard(e) {
-//             e.preventDefault();
-//             if (e.target.dataset.id.length == 5) {
-//               const id = e.target.dataset.target.imdb_id;
-//               console.log(id, 'imdb_id');
-//               return id;
-//             } else if (e.target.dataset.id) {
-//               const id = e.target.dataset.id;
-//               console.log(id, 'id');
-//               return id;
-//             }
-
-//             const id = e.target.dataset.id;
-//             const url = `https://api.themoviedb.org/3/movie/${id}?api_key=1d821060cfc3dc7c024273bf806840e9&language=en-US`;
-//             return fetch(url)
-//               .then(response => response.json())
-//               .then(data => {
-//                 console.log(data, 'hi from data');
-//                 return data;
-//               });
-//   }
-//   renderCard();
+  searchFetch().then(filmcards => {
+    $(domContainer).pagination(
+      $.extend(
+        {},
+        {
+          items: fetchApi.totalResults,
+          itemsOnPage: 20,
+          onPageClick: function (pageNumber, event) {
+            fetchApi.page = pageNumber;
+            searchFetch().then(filmcards => {
+              console.log(filmcards);
+              appendCardsMarkup(filmcards);
+            });
+          },
+        },
+      ),
+    );
+    appendCardsMarkup(filmcards);
+  });
 }
+  // ===========================================================
+//   const list = document.querySelector('.film-gallery');
+//   list.addEventListener('click', renderCard);
+
+//   function renderCard(e) {
+//     e.preventDefault();
+//     if (e.target.dataset.id.length == 5) {
+//       const id = e.target.dataset.target.imdb_id;
+//       console.log(id, 'imdb_id');
+//       return id;
+//     } else if (e.target.dataset.id) {
+//       const id = e.target.dataset.id;
+//       console.log(id, 'id');
+//       return id;
+//     }
+
+//     const id = e.target.dataset.id;
+//     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=1d821060cfc3dc7c024273bf806840e9&language=en-US`;
+//     return fetch(url)
+//       .then(response => response.json())
+//       .then(data => {
+//         console.log(data, 'hi from data');
+//         return data;
+//       });
+//   }
+// }
+//   renderCard();
+
  // ===========================================================
 function appendCardsMarkup(filmcards) {
   console.log(filmcards);
   clearCardsContainer();
   refs.cardsContainer.insertAdjacentHTML('beforeend', allcardsTpl(filmcards)); 
 }
-
 $(function () {
   $(domContainer).pagination({
       cssStyle: 'dark-theme',
@@ -84,7 +93,6 @@ $(function () {
       },
     });
 });
-
 
 
 const genres = JSON.stringify(getGenres);

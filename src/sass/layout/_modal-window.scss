@@ -16,11 +16,12 @@
 .modal.is-open {
   opacity: 1;
   pointer-events: initial;
-}
-
-body.modal-open {
   overflow: hidden;
 }
+
+// body.modal-open {
+  
+// }
 
 .modal-backdrop {
   position: absolute;
