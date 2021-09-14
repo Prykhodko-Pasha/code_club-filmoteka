@@ -23,7 +23,7 @@ export default class CardsApiService {
 
   fetchCards() {
     return fetch(
-      `https://api.themoviedb.org/3/trending/all/week?api_key=${TMD_KEY}&page=${this.page}`,
+      `https://api.themoviedb.org/3/trending/movie/week?api_key=${TMD_KEY}&page=${this.page}`,
     )
       .then(response => response.json())
       .then(results => {
