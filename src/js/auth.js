@@ -113,7 +113,7 @@ class FirebaseWork {
 
     return new Promise((resolve, reject) => {
       this._database.ref('queue/' + this._hashUserId).set(movieList, error => {
-        console.log(movieList, this._hashUserId);
+        // console.log(movieList, this._hashUserId);
         if (error) {
           reject(error);
         }
@@ -201,7 +201,7 @@ class FirebaseWork {
     }
   }
   function addQueueIdToLS(id) {
-    console.log(id);
+    // console.log(id);
     if (localStorage.getItem('QueueList')) {
       const QueueArr = JSON.parse(localStorage.getItem('QueueList'));
       QueueArr.push(id);
