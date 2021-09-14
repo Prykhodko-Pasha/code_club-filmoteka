@@ -113,7 +113,6 @@ class FirebaseWork {
 
     return new Promise((resolve, reject) => {
       this._database.ref('queue/' + this._hashUserId).set(movieList, error => {
-     
         if (error) {
           reject(error);
         }
