@@ -1,5 +1,5 @@
 import { renderLibraryPage } from './homeHeader';
-
+const domContainer = document.querySelector('#js-pagination');
 const hashLib = require('hash.js');
 const firebaseConfig = {
   apiKey: 'AIzaSyDApnzLSghnRxqJ_2remxDb3MWoJuxFKlM',
@@ -89,6 +89,7 @@ class FirebaseWork {
       });
   }
   getWatchedList() {
+    $(domContainer).pagination('destroy')
     return this._getList('watched');
   }
   getQueueList() {

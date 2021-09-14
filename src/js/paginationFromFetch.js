@@ -14,8 +14,14 @@ const fetchApi = new CardsApiService();
 
 function handleInput(e) {
   e.preventDefault();
-  fetchApi.query = e.currentTarget.elements.query.value.trim();
-  onSearch();
+ if (e.currentTarget.elements.query.value === '') {
+    return alert('Введите запрос');
+  }
+ else {
+    fetchApi.query = e.currentTarget.elements.query.value.trim();
+    onSearch();
+    e.currentTarget.elements.query.value = '';
+  }
 }
 
 function clearCardsContainer() {
@@ -122,7 +128,7 @@ function searchFetch() {
       //     console.log(change)
       return change;
     })
-    .catch(error => console.log(error));
+    .catch(error => alert('Введите верное заначение запроса'));
 }
 
 // rate
