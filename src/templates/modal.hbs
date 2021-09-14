@@ -1,0 +1,52 @@
+<div class='modal-backdrop'>
+<div class='modal__container'>
+  <div class='movie-about'>
+    <div class='movie-imgBox'>
+      <img class='image' src='{{poster_path}}' alt='{{title}}' title='{{title}}' />
+    </div>
+    <div class='movie-infoBox'>
+      <div>
+        <h2 class='movie-title'>{{title}}</h2>
+        <ul class='movie-list'>
+          <li class='movie-list__item'>
+            <p class='movie-properties'>Vote / Votes</p>
+            <p class='properties-data--upper'>
+              <span class='properties-data--marker'>{{vote_average}}</span>
+              <span class='properties-data--divider'>/</span>
+              <span>{{vote_count}}</span>
+            </p>
+          </li>
+          <li class='movie-list__item'>
+            <p class='film__properties'>Popularity</p>
+            <p class='properties-data--upper'>{{popularity}}</p>
+          </li>
+          <li class='movie-list__item'>
+            <p class='movie-properties'>Original Title</p>
+            <p class='properties-data--divider'>{{original_title}}</p>
+          </li>
+          <li class='movie-list__item'>
+            <p class='movie-properties'>Genre</p>
+            <p class='properties-data--divider'>
+              {{#if genres}}
+                {{#each genres}}
+                  <span>{{this.name}}{{#unless @last}},{{/unless}}</span>
+                {{/each}}
+              {{else}}<span>N/A</span>
+              {{/if}}
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class='about-title'>About
+        </h3>
+        <p class='about-text'>{{overview}}</p>
+      </div>
+      <div class='movie-buttonBox'>
+        <button type='button' class='film__button film__btnWatched' data-id={{id}}>Add to Watched</button>
+        <button type='button' class='film__button film__btnQueue' data-id={{id}}>Add to Queue</button>
+      </div>
+      {{!-- <button type='button' class='close__button' data-action='close-modal'></button> --}}
+    </div>
+  </div>
+</div>
