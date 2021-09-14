@@ -2,11 +2,15 @@
     <section class="film-gallery-section js-librarySection">      
       <div class="container">
         <ul class="film-gallery gallery list"></ul>
-        <div class="movie-backdrop js-movie-backdrop">
-          <div class="modal" data-action="open-movie-modal"></div>
 
-          <button type="button"   class="lightbox__button" data-action="modal__close"
-        >X</button>        
+        <div class="movie-backdrop js-movie-backdrop">
+          <div class="modal" data-action="open-movie-modal">            
+            <div class='modal__container'>
+              <button type="button" class="modal__close" data-action="modal__close"
+              >X</button> </div>
+          </div>
+
+                
         </div>
         
       </div>

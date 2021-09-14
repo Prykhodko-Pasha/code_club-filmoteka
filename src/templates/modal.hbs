@@ -1,14 +1,15 @@
-<div class='modal-backdrop'>
-<div class='modal__container'>
+{{!-- <div class='modal-backdrop'> --}}
+{{!-- <div class='modal__container'> --}}
+  
   <div class='movie-about'>
     <div class='movie-imgBox'>
-      <img class='image' src='https://image.tmdb.org/t/p/w500{{poster_path}}' 
+      <img class='modal__image' src='https://image.tmdb.org/t/p/w500{{poster_path}}' 
       data-id={{id}} alt='{{title}}' title='{{title}}' />
     </div>
     <div class='movie-infoBox'>
       <div>
-        <h2 class='movie-title'>{{title}}</h2>
-        <ul class='movie-list'>
+        <h2 class='movi__title'>{{title}}</h2>
+        <ul class='movie__list'>
           <li class='movie-list__item'>
             <p class='movie-properties'>Vote / Votes</p>
             <p class='properties-data--upper'>
@@ -31,12 +32,15 @@
           <li class='movie-list__item'>
             <p class='movie-properties'>Genre</p>
             <p class='properties-data--divider'>
-              {{#if genres}}
+              {{#each genre.name}}
+              <p class='modal__genres'>{{genre.name}}</p>>
+              {{/each}}
+              {{!-- {{#if genres}}
                 {{#each genres}}
                   <span>{{this.name}}{{#unless @last}},{{/unless}}</span>
                 {{/each}}
               {{else}}<span>N/A</span>
-              {{/if}}
+              {{/if}} --}}
             </p>
           </li>
         </ul>
@@ -53,4 +57,4 @@
       {{!-- <button type='button' class='close__button' data-action='close-modal'></button> --}}
     </div>   
   </div>
-</div>
+{{!-- </div> --}}
