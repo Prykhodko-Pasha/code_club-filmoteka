@@ -40,12 +40,6 @@ function eventOnBackdrop(e) {
     // console.log('hey') 
 }
 
-
-
-
-
-
-
 // ===================
 list.addEventListener('click', openModal)
 function openModal(e){
@@ -54,13 +48,9 @@ function openModal(e){
         document.body.classList.add('show-movie-modal');
         onOpenModal(); 
         const id = e.target.dataset.id
-        // if (id == undefined){
-        //     modalContainer.insertAdjacentHTML('beforeend', {'vote_avarage': 3,})
-        // }
         movieCard.fetchMovie(e.target.dataset.id).then(movie => {
             console.log(movie)
             renderMarkup(movie)
-            // modalTemplate(movie)
         })
       }     
 }

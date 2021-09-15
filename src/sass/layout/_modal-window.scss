@@ -1,121 +1,240 @@
-.show-movie-modal .movie-backdrop {
+.show-movie-modal .modal__backdrop {
   opacity: 1;
   visibility: visible;
   pointer-events: initial;
 }
-// body.show-modal  {
-//   transform: scale(1);
-// }
 
-.movie-backdrop {
+.modal {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 999;
-
-  pointer-events: none;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 200ms ease-in-out, visibility 200 ms ease-in-out;
-
-  @media (min-width: 768px) {
-    padding-top: 2px;
-  }
+  pointer-events: none;
+  transition: opacity cubic-bezier(0.4, 0, 0.2, 1) 250ms;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
-
-.modal {
-  left: 0;
+.modal__backdrop {
+  position: absolute;
   top: 0;
-  width: 2px;
-  height: 500px;
-  padding: 24px;
-  border-radius: 4px;
-  max-width: 640px; //1200px
-  max-height: 100%;
-  // overflow: scroll;
-  width: 100%;
-  min-height: 320px;
-  background-color: var(--main-color-bg);
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-    0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.25);
+}
 
-  transition: scale(1.1);
-  transition: transform 200ms ease-in-out;
+.modal__container {
+  overflow-x: auto;
+  position: relative;
 
-  @media (min-width: 1200px) {
-    max-width: 1100;
+  max-height: 100vh;
+  width: 280px;
+  margin: auto;
+  padding: 48px 20px 41px 20px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #000000;
+  z-index: 2;
+  font-family: Roboto, sans-serif;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
-};
 
-.modal__image{
-  width: 200px;
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 
-}
-// .modal__body {
-//   // z-index: 1;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background-color: #fefefe;
-//   margin: 15% auto;
-//   padding: 20px;
-//   width: 80%;
-// };
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
 
-.modal__close {
-  float: right;
-};
-
-.modal__header {
-  color: #000000;
-  font-size: 30px;
   font-weight: 500;
-  text-transform: uppercase;
-};
+  font-style: normal;
+  line-height: calc(20 / 12);
 
-.modal-list__stat {
-font-weight: 500;
-font-size: 12px;
-line-height: 1.33;
-color: #8C8C8C;
-};
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    display: flex;
+    flex-direction: column; //MK
+    margin: auto;
+    width: 618px;
+    min-height: 457px;
+    padding: 42px 30px 40px 28px;
+  }
 
-.modal-list__value {
-  font-weight: 500;
-font-size: 12px;
-line-height: 14px;
-  color: #000000;
-};
-
-.rating {
-color: white;
-background: #FF6B01;
-border-radius: 5px;
-};
-
-.film-title {
-  text-transform: uppercase;
-};
-
-.description {
-font-weight: 500;
-font-size: 12px;
-line-height: 1.67;
-color: #000000;
-};
-
-.modal__content {
-  padding-left: 20px;
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    flex-direction: column; //MK
+    width: 882px;
+    height: 568px;
+    padding: 50px 30px 40px 30px;
+  }
 }
 
-.about-text{
-  margin-top: -100px;
-  color: #000;
+// Врапер для постера з опису
+@media screen and (min-width: 768px) {
+  .film__about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+// Изображение постера фильма
+.film__image {
+  display: block;
+  max-width: 240px;
+  min-height: 356px;
+  border-radius: 5px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 264px;
+    height: auto;
+    margin-bottom: 0px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    max-width: 396px;
+  }
+}
+
+.film__imgBox {
+  position: relative;
+  cursor: pointer;
+  @media screen and (min-width: 768px) {
+    margin-right: 30px;
+  }
+}
+
+
+// Информация про фильм
+.film__infoBox {
+  text-align: star;
+}
+
+.film__title {
+  font-size: 20px;
+  line-height: 1.15;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 30px;
+    line-height: 1.17;
+  }
+}
+
+.film__item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.film__properties {
+  color: #8c8c8c;
+  min-width: 108px;
+}
+
+.properties__data--upper {
+  text-transform: uppercase;
+  line-height: 1.17;
+}
+
+.properties__data--marker {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #ffffff;
+  background-color: #ff6b08;
+  border-radius: 5px;
+}
+
+.properties__data--divider {
+  margin-right: 3px;
+}
+
+.about__title {
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.about__text {
+  line-height: 1.67;
+  margin-bottom: 21px;
+  color: #000000;
+}
+
+
+.film__buttonBox {
+  display: flex;
+}
+
+.film__button {
+  width: 112px;
+  height: 44px;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: #ffffff;
+  transition: all cubic-bezier(0.4, 0, 0.2, 1) 250ms;
+  &:first-child {
+    margin-right: 15px;
+  }
+  &:hover,
+  &:focus {
+    background-color: #ff6b08;
+    color: #ffffff;
+    border: 1px solid #ff6b08;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    width: 125px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 136px;
+  }
+}
+
+.close__button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: transparent;
+  color: #000000;
+
+  transition: background-color cubic-bezier(0.4, 0, 0.2, 1) 250ms;
+
+  cursor: pointer;
+  outline: none;
+
+  background-position: center;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  &:hover,
+  &:focus {
+    background-color: #e9e6e6;
+
+    border: 1px solid #aaa8a8;
+  }
 }
