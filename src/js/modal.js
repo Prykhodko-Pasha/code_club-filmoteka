@@ -24,15 +24,15 @@ function eventOnBackdrop(e) {
     }
   }
 
-  function onEscKeyPress(e) {
-    const ESC_KEY_CODE = 'Escape';
-    const exit = e.code === ESC_KEY_CODE;
-    console.log('click')
+function onEscKeyPress(e) {
+  const ESC_KEY_CODE = 'Escape';
+  const exit = e.code === ESC_KEY_CODE;
+  console.log('click')
 
-    if (exit) {
-    closeMovieModal();
-    }
+  if (exit) {
+  closeMovieModal();
   }
+}
 
   function onOpenModal() {  
     modal.style.opacity = '1'; 
@@ -43,13 +43,16 @@ function eventOnBackdrop(e) {
 // ===================
 list.addEventListener('click', openModal)
 function openModal(e){
+  window.addEventListener('keydown', onEscKeyPress);
     e.preventDefault();
+
     if (e.target.classList.contains('film-gallery__img')) { 
         document.body.classList.add('show-movie-modal');
         onOpenModal(); 
-        const id = e.target.dataset.id
+
+        const id = e.target.dataset.id 
         movieCard.fetchMovie(e.target.dataset.id).then(movie => {
-            console.log(movie)
+            // console.log(movie)
             renderMarkup(movie)
         })
       }     
@@ -62,10 +65,6 @@ class renderMovieCard{
     constructor(){
 
     }   
-    seasonCard(id){
-        
-    }
-
 
 // ++++++
     fetchMovie(id){

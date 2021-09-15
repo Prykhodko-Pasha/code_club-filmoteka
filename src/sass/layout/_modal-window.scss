@@ -1,35 +1,39 @@
-.show-movie-modal .modal__backdrop {
+.show-movie-modal .movie-backdrop {
   opacity: 1;
   visibility: visible;
   pointer-events: initial;
 }
 
-.modal {
+
+.movie-backdrop {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+
   pointer-events: none;
-  transition: opacity cubic-bezier(0.4, 0, 0.2, 1) 250ms;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease-in-out, visibility 200 ms ease-in-out;
+
+  @media (min-width: 768px) {
+    padding-top: 2px;
+  }
 }
 
-.modal__backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.25);
-}
 
-.modal__container {
+.modal__close {
+  float: right;
+};
+
+
+.tech {
   overflow-x: auto;
   position: relative;
 
@@ -207,7 +211,7 @@
   }
 }
 
-.close__button {
+.modal__close {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -238,3 +242,126 @@
     border: 1px solid #aaa8a8;
   }
 }
+
+
+
+
+
+
+
+// .modal {
+  //   left: 0;
+  //   top: 0;
+  //   width: 2px;
+  //   height: 500px;
+  //   padding: 24px;
+  //   border-radius: 4px;
+  //   max-width: 640px; //1200px
+  //   max-height: 100%;
+  //   // overflow: scroll;
+  //   width: 100%;
+  //   min-height: 320px;
+  //   background-color: var(--main-color-bg);
+  //   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+  //     0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  
+  //   transition: scale(1.1);
+  //   transition: transform 200ms ease-in-out;
+  
+  //   @media (min-width: 1200px) {
+  //     max-width: 1100;
+  //   }
+  // };
+
+
+
+
+
+
+
+
+// .modal__header {
+//   color: #000000;
+//   font-size: 30px;
+//   font-weight: 500;
+//   text-transform: uppercase;
+// };
+
+// .modal-list__stat {
+// font-weight: 500;
+// font-size: 12px;
+// line-height: 1.33;
+// color: #8C8C8C;
+// };
+
+// .modal-list__value {
+//   font-weight: 500;
+// font-size: 12px;
+// line-height: 14px;
+//   color: #000000;
+// };
+
+// .rating {
+// color: white;
+// background: #FF6B01;
+// border-radius: 5px;
+// };
+
+// .film-title {
+//   text-transform: uppercase;
+// };
+
+// .description {
+// font-weight: 500;
+// font-size: 12px;
+// line-height: 1.67;
+// color: #000000;
+// };
+
+// .modal__content {
+//   padding-left: 20px;
+// }
+
+// .about-text{
+//   margin-top: -100px;
+//   color: #000;
+// }
+=======
+
+//   @media screen and (min-width: 1024px) {
+//     width: 136px;
+//   }
+// }
+
+// .close__button {
+//   position: absolute;
+//   top: 10px;
+//   right: 10px;
+
+//   width: 30px;
+//   height: 30px;
+//   padding: 0;
+//   margin: 0;
+
+//   border: none;
+//   border-radius: 50%;
+
+//   background-color: transparent;
+//   color: #000000;
+
+//   transition: background-color cubic-bezier(0.4, 0, 0.2, 1) 250ms;
+
+//   cursor: pointer;
+//   outline: none;
+
+//   background-position: center;
+//   background-size: 90%;
+//   background-repeat: no-repeat;
+//   &:hover,
+//   &:focus {
+//     background-color: #e9e6e6;
+
+//     border: 1px solid #aaa8a8;
+//   }
+// }
+

@@ -29,10 +29,19 @@ export default class CardsApiService {
       .then(results => {
         this.totalResults = 2000;
         
+fetchCards() {
+    return fetch(
+      `https://api.themoviedb.org/3/trending/movie/week?api_key=${TMD_KEY}&page=${this.page}`,
+    )
+      .then(response => response.json())
+      .then(results => {
+        this.totalResults = 2000;
+        
         return results.results;
       })
       .catch(error => Promise.reject(error));
   }
+
 
   resetPage() {
     this.page = 1;
