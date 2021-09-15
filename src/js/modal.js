@@ -40,7 +40,6 @@ function onEscKeyPress(e) {
     // console.log('hey') 
 }
 
-
 // ===================
 list.addEventListener('click', openModal)
 function openModal(e){
@@ -50,7 +49,8 @@ function openModal(e){
     if (e.target.classList.contains('film-gallery__img')) { 
         document.body.classList.add('show-movie-modal');
         onOpenModal(); 
-        const id = e.target.dataset.id      
+
+        const id = e.target.dataset.id 
         movieCard.fetchMovie(e.target.dataset.id).then(movie => {
             // console.log(movie)
             renderMarkup(movie)

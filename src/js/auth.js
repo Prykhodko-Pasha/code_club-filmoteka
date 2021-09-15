@@ -1,5 +1,5 @@
 import { renderLibraryPage } from './homeHeader';
-
+const domContainer = document.querySelector('#js-pagination');
 const hashLib = require('hash.js');
 const firebaseConfig = {
   apiKey: 'AIzaSyDApnzLSghnRxqJ_2remxDb3MWoJuxFKlM',
@@ -89,6 +89,7 @@ class FirebaseWork {
       });
   }
   getWatchedList() {
+    $(domContainer).pagination('destroy')
     return this._getList('watched');
   }
   getQueueList() {
@@ -113,7 +114,6 @@ class FirebaseWork {
 
     return new Promise((resolve, reject) => {
       this._database.ref('queue/' + this._hashUserId).set(movieList, error => {
-     
         if (error) {
           reject(error);
         }
