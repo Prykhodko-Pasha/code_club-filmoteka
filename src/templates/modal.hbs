@@ -1,7 +1,85 @@
+<div class='film__about '>
+         {{!-- <button type='button' class='close__button' data-action="modal__close">X</button> --}}
+    <div class='film__imgBox'>
+      <img class="film__image" src="https://www.themoviedb.org/t/p/w300{{poster_path}}" alt="{{title}}" title="{{title}}">
+    </div>
+    <div class='film__infoBox'>
+      <div>
+        <h2 class='film__title'>{{title}}</h2>
+        <ul class='list'>
+          <li class='film__item'>
+            <p class='film__properties'>Vote / Votes</p>
+            <p class='properties__data--upper'>
+              <span class='properties__data--marker'>{{vote_average}}</span>
+              <span class='properties__data--divider'>/</span>
+              <span>{{vote_count}}</span>
+            </p>
+          </li>
+          <li class='film__item'>
+            <p class='film__properties'>Popularity</p>
+            <p class='properties__data--upper'>{{popularity}}</p>
+          </li>
+          <li class='film__item'>
+            <p class='film__properties'>Original Title</p>
+            <p class='properties__data--divider'>{{original_title}}</p>
+          </li>
+          <li class='film__item'>
+            <p class='film__properties'>Genre</p>
+            <p class='properties__data--divider'>
+
+              {{#if genres}}
+                {{#each genres}}
+                  <span>{{this.name}}{{#unless @last}},{{/unless}}</span>
+                {{/each}}
+              {{else}}<span>N/A</span>
+              {{/if}}
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 class='about__title'>About
+        </h3>
+        <p class='about__text'>{{overview}}</p>
+      </div>
+      <div class='film__buttonBox'>
+        <button type='button' class='film__button js-addToWatched' data-id={{id}}>Add to Watched</button>
+        <button type='button' class='film__button js-addToQueue' data-id={{id}}>Add to Queue</button>
+      </div>
+    </div>
+  </div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {{!-- <div class='modal-backdrop'> --}}
 {{!-- <div class='modal__container'> --}}
   
-  <div class='movie-about'>
+   {{!-- <div class='movie-about'>
     <div class='movie-imgBox'>
       <img class='modal__image' src='https://image.tmdb.org/t/p/w500{{poster_path}}' 
       data-id={{id}} alt='{{title}}' title='{{title}}' />
@@ -33,15 +111,16 @@
             <p class='movie-properties'>Genre</p>
             <p class='properties-data--divider'>
               {{#each genre.name}}
-              <p class='modal__genres'>{{genre.name}}</p>>
+              <p class='modal__genres'>{{genre.name}}</p>
               {{/each}}
+               --}}
               {{!-- {{#if genres}}
                 {{#each genres}}
-                  <span>{{this.name}}{{#unless @last}},{{/unless}}</span>
+                  <span>{{this.name}}{{#unless }},{{/unless}}</span>
                 {{/each}}
               {{else}}<span>N/A</span>
               {{/if}} --}}
-            </p>
+           {{!-- </p>
           </li>
         </ul>
       </div>
@@ -53,8 +132,8 @@
       <div class='movie-buttonBox'>
         <button type='button' class='film__button film__btnWatched' data-id={{id}}>Add to Watched</button>
         <button type='button' class='film__button film__btnQueue' data-id={{id}}>Add to Queue</button>
-      </div>
+      </div> --}}
       {{!-- <button type='button' class='close__button' data-action='close-modal'></button> --}}
-    </div>   
-  </div>
+    {{!-- </div>   
+  </div> --}}
 {{!-- </div> --}}
