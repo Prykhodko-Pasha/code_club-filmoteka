@@ -4,7 +4,6 @@
   pointer-events: initial;
 }
 
-
 .movie-backdrop {
   display: flex;
   justify-content: center;
@@ -27,11 +26,9 @@
   }
 }
 
-
 .modal__close {
   float: right;
-};
-
+}
 
 .tech {
   overflow-x: auto;
@@ -90,7 +87,6 @@
   }
 }
 
-
 // Изображение постера фильма
 .film__image {
   display: block;
@@ -120,7 +116,6 @@
     margin-right: 30px;
   }
 }
-
 
 // Информация про фильм
 .film__infoBox {
@@ -177,7 +172,6 @@
   color: #000000;
 }
 
-
 .film__buttonBox {
   display: flex;
 }
@@ -201,6 +195,14 @@
     background-color: #ff6b08;
     color: #ffffff;
     border: 1px solid #ff6b08;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
+    border: 1px solid #ff6b08;
+    color: #ff6b08;
+    pointer-events: none;
   }
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     width: 125px;
@@ -243,42 +245,29 @@
   }
 }
 
-
-
-
-
-
-
 // .modal {
-  //   left: 0;
-  //   top: 0;
-  //   width: 2px;
-  //   height: 500px;
-  //   padding: 24px;
-  //   border-radius: 4px;
-  //   max-width: 640px; //1200px
-  //   max-height: 100%;
-  //   // overflow: scroll;
-  //   width: 100%;
-  //   min-height: 320px;
-  //   background-color: var(--main-color-bg);
-  //   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-  //     0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-  
-  //   transition: scale(1.1);
-  //   transition: transform 200ms ease-in-out;
-  
-  //   @media (min-width: 1200px) {
-  //     max-width: 1100;
-  //   }
-  // };
+//   left: 0;
+//   top: 0;
+//   width: 2px;
+//   height: 500px;
+//   padding: 24px;
+//   border-radius: 4px;
+//   max-width: 640px; //1200px
+//   max-height: 100%;
+//   // overflow: scroll;
+//   width: 100%;
+//   min-height: 320px;
+//   background-color: var(--main-color-bg);
+//   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+//     0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 
+//   transition: scale(1.1);
+//   transition: transform 200ms ease-in-out;
 
-
-
-
-
-
+//   @media (min-width: 1200px) {
+//     max-width: 1100;
+//   }
+// };
 
 // .modal__header {
 //   color: #000000;
@@ -327,7 +316,6 @@
 //   color: #000;
 // }
 
-
 //   @media screen and (min-width: 1024px) {
 //     width: 136px;
 //   }
@@ -364,4 +352,3 @@
 //     border: 1px solid #aaa8a8;
 //   }
 // }
-

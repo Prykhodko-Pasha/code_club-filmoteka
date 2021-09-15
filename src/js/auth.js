@@ -89,7 +89,7 @@ class FirebaseWork {
       });
   }
   getWatchedList() {
-    $(domContainer).pagination('destroy')
+    $(domContainer).pagination('destroy');
     return this._getList('watched');
   }
   getQueueList() {
@@ -128,7 +128,6 @@ class FirebaseWork {
 
     return new Promise((resolve, reject) => {
       this._database.ref('watched/' + this._hashUserId).set(movieList, error => {
-       
         if (error) {
           reject(error);
         }
@@ -143,7 +142,6 @@ class FirebaseWork {
 
     return new Promise((resolve, reject) => {
       this._database.ref('queue/' + this._hashUserId).set(movieList, error => {
-    
         if (error) {
           reject(error);
         }
@@ -159,6 +157,7 @@ class FirebaseWork {
   const refs = {
     authButton: document.querySelector('.js-authButton'),
     includeMain: document.querySelector('.film-gallery'),
+    modalWindow: document.querySelector('.modal'),
   };
   const fw = new FirebaseWork(firebaseConfig, hashLib);
   refs.includeMain.addEventListener('click', event => {
@@ -172,6 +171,22 @@ class FirebaseWork {
       fw.addToQueue(event.target.parentElement.dataset.id);
     }
   });
+
+  //Pasha
+  refs.modalWindow.addEventListener('click', event => {
+    if (event.target.classList.contains('modal-addToWatched')) {
+      event.target.textContent = 'Watched';
+      event.target.disabled = true;
+      addWatchedIdToLS(event.target.dataset.id);
+      fw.addToWatched(event.target.dataset.id);
+    } else if (event.target.classList.contains('modal-addToQueue')) {
+      event.target.textContent = 'In Queue';
+      event.target.disabled = true;
+      addQueueIdToLS(event.target.dataset.id);
+      fw.addToQueue(event.target.dataset.id);
+    }
+  });
+  //======
 
   refs.includeMain.addEventListener('click', e => {
     if (e.target.classList.contains('js-removeFromWatched')) {

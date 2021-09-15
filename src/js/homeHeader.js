@@ -31,6 +31,7 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
   libraryList.innerHTML = markupWatched;
   //=============== Pasha ===============
   changeWatchBtns();
+  onPopulateQueueList();
   setTimeout(function () {
     preloaderEl.classList.add('hide');
   }, 1900);
