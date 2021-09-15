@@ -11,6 +11,15 @@ const btnHome = document.querySelector('.js-homeButton');
 btnHome.addEventListener('click', homePage);
 
 async function renderLibraryPage(moviesWatched, moviesQueue) {
+  //Pasha
+  const preloaderEl = document.querySelector('.preloader');
+  const preloaderImg = document.querySelector('.preloader__img');
+  // console.log('!!!!!!!!!!!!');
+  preloaderEl.classList.remove('hide');
+
+  setTimeout(() => (preloaderImg.style.opacity = '1'), 100); //скрываем скачок изображения при перезагрузке
+  //======
+
   includeHeader.style.cssText = `display: none`;
   renderLibrary.innerHTML = Library();
   const markupWatched = await getMoviesDataById(moviesWatched);
@@ -22,6 +31,9 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
   libraryList.innerHTML = markupWatched;
   //=============== Pasha ===============
   changeWatchBtns();
+  setTimeout(function () {
+    preloaderEl.classList.add('hide');
+  }, 1900);
   //====================================
 
   const btnHome = document.querySelector('.js-homeButton');
@@ -39,8 +51,8 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
     //=============== Pasha ===============
     changeWatchBtns();
     onPopulateRemovedFromWatchedList();
+    onPopulateQueueList();
     //====================================
-
   });
   buttonQueue.addEventListener('click', () => {
     buttonQueue.classList.add('current-btn');
@@ -55,8 +67,8 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
       btn.title = 'Remove from Queue';
     });
     onPopulateRemovedFromQueueList();
+    onPopulateWatchedList();
     //======================================
-
   });
 }
 export { renderLibraryPage };
@@ -93,16 +105,28 @@ export { renderLibraryPage };
 // }
 
 //Pasha
-// function removeWatchedIdFromLS(id) {
-//   const watchedArr = JSON.parse(localStorage.getItem('WatchedList'));
-//   const elToDel = watchedArr.indexOf(id);
-//   watchedArr.splice(elToDel, 1);
-//   localStorage.setItem('WatchedList', JSON.stringify(watchedArr));
-
-//   // const favArr = JSON.parse(localStorage.getItem('favList'));
-//   // favArr.splice(elToDel, 1);
-//   // localStorage.setItem('favList', JSON.stringify(favArr));
-// }
+function onPopulateWatchedList() {
+  if (localStorage.getItem('WatchedList')) {
+    const watchedArr = JSON.parse(localStorage.getItem('WatchedList'));
+    const btnsWatchedList = document.querySelectorAll('.toWatched');
+    btnsWatchedList.forEach(btn => {
+      if (watchedArr.includes(btn.dataset.id)) {
+        btn.disabled = true;
+      }
+    });
+  }
+}
+function onPopulateQueueList() {
+  if (localStorage.getItem('QueueList')) {
+    const QueueArr = JSON.parse(localStorage.getItem('QueueList'));
+    const btnsQueueList = document.querySelectorAll('.toQueue');
+    btnsQueueList.forEach(btn => {
+      if (QueueArr.includes(btn.dataset.id)) {
+        btn.disabled = true;
+      }
+    });
+  }
+}
 
 function changeWatchBtns() {
   const btnsWatched = document.querySelectorAll('.toWatched');
