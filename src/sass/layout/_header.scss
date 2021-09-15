@@ -50,6 +50,7 @@ button {
   display: flex;
 }
 .header__site--nav_link {
+  cursor: pointer;
   color: #ffffff;
   position: relative;
   text-decoration: none;
@@ -57,9 +58,11 @@ button {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.17;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .header__site--nav_link:hover {
   color: var(--extract-orange-color);
+  cursor: pointer;
 }
 .header__site-nav_current::after {
   content: '';
@@ -91,18 +94,20 @@ button {
   display: flex;
   align-items: center;
   color: #ffffff;
+  cursor: pointer;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .header__navigator--logo:hover {
   color: var(--extract-orange-color);
-  &:hover .header__logo {
+  .header__logo {
     stroke: var(--extract-orange-color);
-  }
+}
 }
 .header__logo--name {
   font-size: 30px;
   line-height: 35px;
+  cursor: pointer;
 }
-
 @media screen and (max-width: 768px) {
   .header__logo--name {
     display: none;
@@ -110,8 +115,8 @@ button {
 }
 .header__logo {
   margin-right: 10px;
-  transition-property: stroke;
   stroke: var(--secondary-text-color);
+  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 //==========================================
@@ -129,7 +134,7 @@ button {
   color: white;
 }
 
-input:hover {
+.input-header:hover {
   border-color: var(--extract-orange-color);
 }
 
@@ -142,6 +147,7 @@ input:hover {
   height: 20px;
   color: #ffffff;
   cursor: pointer;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media screen and (min-width: 768px) {

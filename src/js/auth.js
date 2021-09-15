@@ -1,5 +1,5 @@
 import { renderLibraryPage } from './homeHeader';
-
+const domContainer = document.querySelector('#js-pagination');
 const hashLib = require('hash.js');
 const firebaseConfig = {
   apiKey: 'AIzaSyDApnzLSghnRxqJ_2remxDb3MWoJuxFKlM',
@@ -48,7 +48,9 @@ class FirebaseWork {
           this._hashUserId = hashAuth;
           return snapshot.val();
         }
-        throw new Error('Доступ запрещён. Такой пользователь не найден(');
+        // throw new Error('Доступ запрещён. Такой пользователь не найден(');
+        throw new Error('Please login to be able to use the library.');
+        // throw alert('Ввойдите пожалуйста, чтоб иметь возможность использовать библиотеку.')
       });
   }
   signUp(userData) {
@@ -87,6 +89,7 @@ class FirebaseWork {
       });
   }
   getWatchedList() {
+    $(domContainer).pagination('destroy')
     return this._getList('watched');
   }
   getQueueList() {
@@ -111,7 +114,36 @@ class FirebaseWork {
 
     return new Promise((resolve, reject) => {
       this._database.ref('queue/' + this._hashUserId).set(movieList, error => {
-        console.log(movieList, this._hashUserId);
+        if (error) {
+          reject(error);
+        }
+        resolve(movieList);
+      });
+    });
+  }
+  async removeFromWatched(movieId) {
+    const movieList = await this._getList('watched');
+    const elToDel = movieList.indexOf(movieId);
+    movieList.splice(elToDel, 1);
+
+    return new Promise((resolve, reject) => {
+      this._database.ref('watched/' + this._hashUserId).set(movieList, error => {
+       
+        if (error) {
+          reject(error);
+        }
+        resolve(movieList);
+      });
+    });
+  }
+  async removeFromQueue(movieId) {
+    const movieList = await this._getList('queue');
+    const elToDel = movieList.indexOf(movieId);
+    movieList.splice(elToDel, 1);
+
+    return new Promise((resolve, reject) => {
+      this._database.ref('queue/' + this._hashUserId).set(movieList, error => {
+    
         if (error) {
           reject(error);
         }
@@ -121,19 +153,79 @@ class FirebaseWork {
   }
 }
 
+// export FirebaseWork;
+
 (() => {
   const refs = {
     authButton: document.querySelector('.js-authButton'),
-    includeMain: document.querySelector('.film-gallery-section'),
+    includeMain: document.querySelector('.film-gallery'),
   };
   const fw = new FirebaseWork(firebaseConfig, hashLib);
   refs.includeMain.addEventListener('click', event => {
     if (event.target.classList.contains('js-addToWatched')) {
-      fw.addToWatched(event.target.dataset.id);
+      event.target.parentElement.disabled = true;
+      addWatchedIdToLS(event.target.parentElement.dataset.id);
+      fw.addToWatched(event.target.parentElement.dataset.id);
     } else if (event.target.classList.contains('js-addToQueue')) {
-      fw.addToQueue(event.target.dataset.id);
+      event.target.parentElement.disabled = true;
+      addQueueIdToLS(event.target.parentElement.dataset.id);
+      fw.addToQueue(event.target.parentElement.dataset.id);
     }
   });
+
+  refs.includeMain.addEventListener('click', e => {
+    if (e.target.classList.contains('js-removeFromWatched')) {
+      e.target.parentElement.disabled = true;
+      removeWatchedIdFromLS(e.target.parentElement.dataset.id);
+      fw.removeFromWatched(e.target.parentElement.dataset.id);
+    }
+  });
+  refs.includeMain.addEventListener('click', e => {
+    if (e.target.classList.contains('js-removeFromQueue')) {
+      e.target.parentElement.disabled = true;
+      removeQueueIdFromLS(e.target.parentElement.dataset.id);
+      fw.removeFromQueue(e.target.parentElement.dataset.id);
+    }
+  });
+
+  //========= Pasha =========
+  function addWatchedIdToLS(id) {
+    if (localStorage.getItem('WatchedList')) {
+      const WatchedArr = JSON.parse(localStorage.getItem('WatchedList'));
+      WatchedArr.push(id);
+      localStorage.setItem('WatchedList', JSON.stringify(WatchedArr));
+    } else {
+      const WatchedArr = [id];
+      localStorage.setItem('WatchedList', JSON.stringify(WatchedArr));
+    }
+  }
+  function addQueueIdToLS(id) {
+    // console.log(id);
+    if (localStorage.getItem('QueueList')) {
+      const QueueArr = JSON.parse(localStorage.getItem('QueueList'));
+      QueueArr.push(id);
+      localStorage.setItem('QueueList', JSON.stringify(QueueArr));
+    } else {
+      const QueueArr = [id];
+      localStorage.setItem('QueueList', JSON.stringify(QueueArr));
+    }
+  }
+
+  function removeWatchedIdFromLS(id) {
+    const watchedArr = JSON.parse(localStorage.getItem('WatchedList'));
+    const elToDel = watchedArr.indexOf(id);
+    // console.log(elToDel);
+    watchedArr.splice(elToDel, 1);
+    localStorage.setItem('WatchedList', JSON.stringify(watchedArr));
+  }
+  function removeQueueIdFromLS(id) {
+    const queueArr = JSON.parse(localStorage.getItem('QueueList'));
+    const elToDel = queueArr.indexOf(id);
+    queueArr.splice(elToDel, 1);
+    localStorage.setItem('QueueList', JSON.stringify(queueArr));
+  }
+  //===============================
+
   refs.authButton.addEventListener('click', event => {
     event.preventDefault();
     fw.login()

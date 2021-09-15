@@ -52,8 +52,14 @@
   line-height: 1.17;
   color: #ffffff;
   align-items: center;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
+.header-library-logo:hover {
+  color: var(--extract-orange-color);
+.header__logo{
+  stroke: var(--extract-orange-color);
+}
+}
 .header-library-logo__text {
   @media screen and (max-width: 767px) {
     display: none;
@@ -78,6 +84,10 @@
   line-height: 1.17;
   text-transform: uppercase;
   color: #ffffff;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    color: var(--extract-orange-color);
+  }
 }
 
 .current {

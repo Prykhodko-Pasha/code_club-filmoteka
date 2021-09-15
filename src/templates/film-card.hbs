@@ -1,28 +1,39 @@
 {{#each this}}
   <li class='film-gallery__item'>
-    <img
-      class='film-gallery__img'
-      src='https://image.tmdb.org/t/p/w500{{poster_path}}'
-      alt={{title}}
-    />
+
+{{#if poster_path}}
+  <img class='film-gallery__img lazyload' loading='lazy' src='https://image.tmdb.org/t/p/w500{{poster_path}}' alt={{title}} data-id={{id}}  />
+  {{else}}
+  <img class='film-gallery__img lazyload' loading='lazy' src='https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg'
+    alt={{title}} data-id={{id}}  />
+  {{/if}}
+ 
+
     <div class='film-gallery__desc'>
-      <p class='film-gallery__name'>
+    {{#if original_title}}
+    <p class='film-gallery__name'>
         {{original_title}}
-      </p>
-      <p>        
+    </p>
+    {{else}}<p class='film-gallery__name'>{{name}}<p>
+      {{/if}}
+
+      <ul class='film-gallery__info list'>        
           {{#each genre_ids}}
-            <span class='film-gallery__genre'> {{this}}</span>
+            <li class='film-gallery__genre'> {{this}}</li>
           {{/each}}
-        <span class='film-gallery__year'>
+        <li class='film-gallery__year'>
           &#124; {{release_date}}
-        </span>
-      </p>
+        </li>    
+        <li class='film-gallery__vote'>{{vote_average}}</li>
+      </ul>
     </div>
 
     <div class='film-gallery__buttons'>
-      <button class='film-gallery__button js-addToWatched' data-id='{{id}}'>Add to Watched</button>
-      <button class='film-gallery__button js-addToQueue' data-id='{{id}}'>Add to Queue</button>
-    </div>
+      <button class='film-gallery__button toWatched' data-id='{{id}}' title="Add to Watched">
+      <i class="material-icons js-addToWatched"> visibility </i></button>
+      <button class='film-gallery__button toQueue' data-id='{{id}}' title="Add to Queue">
+        <i class="material-icons js-addToQueue"> playlist_play </i>
+        </button>
     </div>
   </li>
 {{/each}} 

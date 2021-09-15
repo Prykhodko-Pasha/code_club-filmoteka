@@ -10,11 +10,13 @@
 @import './base/common';
 @import './utils/variables';
 
-@import './base/container';
+// @import './base/container';
 @import './layout/preloader';
 @import './layout/film-card';
 @import './layout/modal-window';
 @import './layout/header-library';
+
+@import './components/visually-hidden';
 
 @import './layout/header';
 @import './layout/btnScroll';
@@ -22,5 +24,4 @@
 @import './footer';
 
 @import './team-modal';
-
 @import './utils/pagination'
