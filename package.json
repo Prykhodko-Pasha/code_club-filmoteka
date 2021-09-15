@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://prykhodko-pasha.github.io/code_club-filmoteka",
+  "homepage": "https://vladomira.github.io/code_club-filmoteka",
   "scripts": {
     "dev": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /code_club-filmoteka/"
