@@ -27,7 +27,9 @@
 @media screen and (max-width: 768px) {
   .flowing__scroll-up,
   .flowing__scroll-down {
-    right: calc((100vw - 380px) / 2);
+    right: 15px;
+    fill: var(--buttons-color);
+
   }
   .icon__arrow-up,
   .icon__arrow-down {
@@ -46,8 +48,8 @@
 
   .icon__arrow-up,
   .icon__arrow-down {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -61,8 +63,7 @@
 
   .icon__arrow-up,
   .icon__arrow-down {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
   }
 }
-//========================
