@@ -141,8 +141,6 @@ function generateVote(movie) {
 // genres
 function generateGenres(movie) {
   let idsGenre = movie.genres.map(id => {
-    // console.log(genre.name)
-    // return genre.name
     return getObj.find(ganre => ganre.id === id).name;
   });
   if (idsGenre.length > 2) {
