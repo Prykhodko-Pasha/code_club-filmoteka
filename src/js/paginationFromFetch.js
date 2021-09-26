@@ -1,6 +1,7 @@
 import CardsApiService from '../js/apiService';
 import allcardsTpl from '../templates/film-card.hbs';
 import getGenres from './movies-genres.json';
+import { makeAction, populateSwitch } from './them-switcher';
 const domContainer = document.querySelector('#js-pagination');
 
 const refs = {
@@ -19,15 +20,13 @@ function handleInput(e) {
   // onSearch();
   // e.currentTarget.elements.query.value = ' ';
 
- if (e.currentTarget.elements.query.value === '') {
+  if (e.currentTarget.elements.query.value === '') {
     return alert('Введите запрос');
-  }
- else {
+  } else {
     fetchApi.query = e.currentTarget.elements.query.value.trim();
     onSearch();
     e.currentTarget.elements.query.value = '';
   }
-
 }
 
 function clearCardsContainer() {
@@ -44,9 +43,11 @@ function onSearch() {
           items: fetchApi.totalResults,
           itemsOnPage: 20,
           onPageClick: function (pageNumber, event) {
-            fetchApi.page = pageNumber;            
+            fetchApi.page = pageNumber;
             searchFetch().then(filmcards => {
               appendCardsMarkup(filmcards);
+              populateSwitch();
+              makeAction();
             });
           },
         },
@@ -64,7 +65,6 @@ function appendCardsMarkup(filmcards) {
   onPopulateQueueList(); //отмечаем фильмы в очереди
 }
 
-
 export default function homePage() {
   fetchApi.resetPage();
   trendFetch().then(filmcards => {
@@ -78,7 +78,9 @@ export default function homePage() {
             fetchApi.page = pageNumber;
 
             trendFetch().then(filmcards => {
-              appendCardsMarkup(filmcards);            
+              appendCardsMarkup(filmcards);
+              populateSwitch();
+              makeAction();
             });
           },
         },
@@ -86,7 +88,7 @@ export default function homePage() {
     );
     appendCardsMarkup(filmcards);
   });
-  
+
   renderHomePage();
 }
 
@@ -94,11 +96,10 @@ $(function () {
   $(domContainer).pagination({
     cssStyle: 'dark-theme',
     onInit: function () {
-      homePage();      
+      homePage();
     },
   });
 });
-
 
 const genres = JSON.stringify(getGenres);
 const getObj = JSON.parse(genres);
@@ -137,10 +138,6 @@ function searchFetch() {
     .catch(error => alert('Введите верное заначение запроса'));
 }
 
-
-
-
-
 // rate
 function generateVote(movie) {
   if (movie.vote_average) {
@@ -163,7 +160,7 @@ function generateGenres(movie) {
 // year
 function generateData(movie) {
   if (movie.release_date == undefined) {
-    return  Number(movie.first_air_date.slice(0, 4));
+    return Number(movie.first_air_date.slice(0, 4));
   } else if (movie.release_date) {
     const release_date = Number(movie.release_date.slice(0, 4));
     return release_date;

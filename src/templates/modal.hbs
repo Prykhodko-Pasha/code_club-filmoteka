@@ -2,15 +2,22 @@
   {{! <button type='button' class='close__button' data-action="modal__close">X</button> }}
   <div class='film__imgBox'>
     {{#if poster_path}}
-    <img
-      class='film__image'
-      src='https://www.themoviedb.org/t/p/w300{{poster_path}}'
-      alt={{title}} title={{title}} /> 
-      
+      <img
+        class='film__image'
+        src='https://www.themoviedb.org/t/p/w300{{poster_path}}'
+        alt={{title}}
+        title={{title}}
+      />
+
     {{else}}
-    <img class='film-gallery__img lazyload' loading='lazy' src='https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg'
-    alt={{title}} title={{title}} />
-  {{/if}}
+      <img
+        class='film-gallery__img lazyload'
+        loading='lazy'
+        src='https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg'
+        alt={{title}}
+        title={{title}}
+      />
+    {{/if}}
   </div>
   <div class='film__infoBox'>
     <div>
@@ -55,10 +62,15 @@
       <button type='button' class='film__button modal-addToWatched' data-id={{id}}>Add to Watched</button>
       <button type='button' class='film__button modal-addToQueue' data-id={{id}}>Add to Queue</button>
     </div>
-
-    <video width="400" height="300" controls="controls" poster="https://archive.org/download/WebmVp8Vorbis/webmvp8.gif">
-     {{!-- poster='{{}}'> --}}
-    <source src="https://archive.org/download/WebmVp8Vorbis/webmvp8_512kb.mp4" type="video/mp4">
+    <video
+      class='video'
+      width='400'
+      height='300'
+      controls='controls'
+      {{! poster='https://archive.org/download/WebmVp8Vorbis/webmvp8.gif' }}
+    >
+      {{!-- poster='{{}}'> --}}
+      <source src='https://www.youtube.com/watch?v={{videoKey}}' type='video/mp4' />
     </video>
   </div>
 </div>

@@ -29,6 +29,7 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
   logoHomePageLibrary.addEventListener('click', homePage);
 
   libraryList.innerHTML = markupWatched;
+
   //=============== Pasha ===============
   changeWatchBtns();
   onPopulateQueueList();
@@ -73,7 +74,6 @@ async function renderLibraryPage(moviesWatched, moviesQueue) {
   });
 }
 export { renderLibraryPage };
-
 // ==============Юля
 // const btnLibrary = document.querySelector('#library')
 // btnLibrary.addEventListener('click', console.log('bum'))
